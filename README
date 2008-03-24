@@ -267,7 +267,7 @@ AAUUTTHHOORR && CCOOPPYYRRIIGGHHTT
        Rocco Caputo <rcaputo@cpan.org>.  Benjamin Smith <bsmith@cpan.org>.
        Countless other people.
 
-       These tests are Copyright 1998−2007 by Rocco Caputo, Benjamin Smith,
+       These tests are Copyright 1998−2008 by Rocco Caputo, Benjamin Smith,
        and countless contributors.  All rights are reserved.  These tests are
        free software; you may redistribute them and/or modify them under the
        same terms as Perl itself.
@@ -276,4 +276,4 @@ AAUUTTHHOORR && CCOOPPYYRRIIGGHHTT
 
 
 
-perl v5.8.8                       2007‐08‐13                  POE‐GEN‐TESTS(1)
+perl v5.8.8                       2008‐03‐24                  POE‐GEN‐TESTS(1)

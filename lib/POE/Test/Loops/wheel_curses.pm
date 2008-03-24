@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: wheel_curses.pm 2209 2007-08-11 09:14:58Z rcaputo $
+# $Id: wheel_curses.pm 2299 2008-03-24 05:11:33Z rcaputo $
 
 # Exercises Wheel::Curses
 
@@ -113,7 +113,7 @@ sub test_keystroke {
 
   $heap->{child_input} .= $input;
   if ($heap->{child_input} =~ /!/) {
-    delete $heap->{curses}; }
+    delete $heap->{curses};
     delete $heap->{readwrite};
     ok( $heap->{child_input} eq "this is a test!", "got keystrokes" );
   }

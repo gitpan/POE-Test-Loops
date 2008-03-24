@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: comp_tcp_concurrent.pm 2209 2007-08-11 09:14:58Z rcaputo $
+# $Id: comp_tcp_concurrent.pm 2299 2008-03-24 05:11:33Z rcaputo $
 
 # Exercise Server::TCP and later, when it's available, Client::TCP.
 
@@ -17,7 +17,10 @@ BEGIN {
   }
 }
 
-use Test::More tests => (42);
+my $NUM_CLIENTS;
+BEGIN { $NUM_CLIENTS = 9 } # rt.cpan.org 32034
+
+use Test::More tests => $NUM_CLIENTS * 2;
 
 diag( "You might see a 'disconnect' error during this test." );
 diag( "It may be ignored." );
@@ -193,7 +196,7 @@ sub do_servers {
 }
 
 sub do_clients {
-  foreach my $N (1..21) {
+  foreach my $N (1..$NUM_CLIENTS) {
     DEBUG and warn "$$: SPAWN\n";
     two_clients($N);
   }
@@ -228,7 +231,7 @@ sub two_clients {
     ServerInput => sub {
       my ($heap, $input) = @_[HEAP, ARG0];
       DEBUG and warn("$$: acceptor client $N got input ($input)");
-      if( $input =~ /#21$/ ) {
+      if( $input =~ /#$NUM_CLIENTS$/ ) {
         $_[HEAP]->{server}->put( 'quit' );
       }
 
@@ -273,7 +276,7 @@ sub two_clients {
     ServerInput => sub {
       my ($heap, $input) = @_[HEAP, ARG0];
       DEBUG and warn("$$: callback client $N got input ($input)");
-      if( $input =~ /#21$/ ) {
+      if( $input =~ /#$NUM_CLIENTS$/ ) {
           $_[HEAP]->{server}->put( 'quit' );
       }
       $_[KERNEL]->yield('shutdown');

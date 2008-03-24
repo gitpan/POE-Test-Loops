@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: wheel_sf_ipv6.pm 2209 2007-08-11 09:14:58Z rcaputo $
+# $Id: wheel_sf_ipv6.pm 2299 2008-03-24 05:11:33Z rcaputo $
 
 # Exercises Client and Server TCP components, which exercise
 # SocketFactory in AF_INET6 mode.
@@ -11,7 +11,7 @@ use Socket;
 BEGIN {
   my $error;
 
-  eval 'use Socket6';
+  eval 'use Socket6 ()';
   if ( length($@) or not exists($INC{"Socket6.pm"}) ) {
     $error = "Socket6 is needed for IPv6 tests";
   }
@@ -60,7 +60,7 @@ diag( "packets across your localhost interface." );
 POE::Component::Server::TCP->new(
   Port               => $tcp_server_port,
   Address            => '::1',
-  Domain             => AF_INET6,
+  Domain             => Socket6::AF_INET6,
   Alias              => 'server',
   ClientConnected    => \&server_got_connect,
   ClientInput        => \&server_got_input,
@@ -109,7 +109,7 @@ sub server_got_error {
 POE::Component::Client::TCP->new(
   RemoteAddress => '::1',
   RemotePort    => $tcp_server_port,
-  Domain        => AF_INET6,
+  Domain        => Socket6::AF_INET6,
   BindAddress   => '::1',
   Connected     => \&client_got_connect,
   ServerInput   => \&client_got_input,

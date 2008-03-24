@@ -1,4 +1,30 @@
 ====================================
+2008-03-24T05:18:08.488853Z ptl-0_98
+====================================
+
+  2008-03-24 05:11:33 (r2299) by rcaputo
+  poe-test-loops/t/01_no_tests.t M;
+  poe-test-loops/lib/POE/Test/Loops/k_signals_rerun.pm M;
+  poe-test-loops/lib/POE/Test/Loops/comp_tcp_concurrent.pm M;
+  poe-test-loops/MANIFEST M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_readline.pm M;
+  poe-test-loops/lib/POE/Test/DondeEstan.pm M; poe-test-loops/Makefile.PL
+  M; poe-test-loops/lib/POE/Test/Loops/wheel_curses.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_run.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_sf_ipv6.pm M;
+  poe-test-loops/lib/POE/Test/Loops.pm A;
+  poe-test-loops/bin/poe-gen-tests M
+
+    Update tests to match POE 0.9999_03.
+    
+    Add POE::Test::Loops and move the VERSION number there so that the
+    package name can be installed and/or depended upon.
+    
+    Add keyword expansion to files that didn't have it set.
+    
+    Bump the version to 0.98. 
+
+====================================
 2007-08-13T06:54:50.727310Z ptl-0_97
 ====================================
 
