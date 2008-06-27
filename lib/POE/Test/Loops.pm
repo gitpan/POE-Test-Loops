@@ -1,4 +1,4 @@
-# $Id: Loops.pm 2299 2008-03-24 05:11:33Z rcaputo $
+# $Id: Loops.pm 2363 2008-06-27 04:51:21Z rcaputo $
 
 package POE::Test::Loops;
 
@@ -6,8 +6,8 @@ use strict;
 use vars qw($VERSION);
 
 use vars qw($VERSION $REVISION);
-$VERSION = '0.98'; # NOTE - Should be #.## (two decimal places)
-$REVISION = do {my($r)=(q$Revision: 2299 $=~/(\d+)/);sprintf"0.%04d",$r};
+$VERSION = '0.99'; # NOTE - Should be #.## (two decimal places)
+$REVISION = do {my($r)=(q$Revision: 2363 $=~/(\d+)/);sprintf"0.%04d",$r};
 
 1;
 

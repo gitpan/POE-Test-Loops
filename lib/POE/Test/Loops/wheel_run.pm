@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: wheel_run.pm 2299 2008-03-24 05:11:33Z rcaputo $
+# $Id: wheel_run.pm 2362 2008-06-27 04:50:41Z rcaputo $
 
 use strict;
 use lib qw(./mylib ../mylib);
@@ -104,7 +104,7 @@ my $shutdown_program = sub {
   my $flag = 0;
   $SIG{ALRM} = sub { die "alarm\n" };
   eval {
-    alarm(10);
+    alarm(30);
     while (<STDIN>) {
       chomp;
       if (/flag (\d+)/) { $flag = $1 }
@@ -123,7 +123,7 @@ my $shutdown_program = sub {
 # }}}
 
 { # manage a global timeout {{{
-  sub TIMEOUT_HALFTIME () { 10 }
+  sub TIMEOUT_HALFTIME () { 15 }
   my $timeout_initialized = 0;
   my $timeout_poked = 0;
   my $timeout_refs = 0;

@@ -1,4 +1,30 @@
 ====================================
+2008-06-27T05:18:51.726499Z ptl-0_99
+====================================
+
+  2008-06-27 04:51:21 (r2363) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    Bump up the version.
+
+  2008-06-27 04:50:41 (r2362) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/wheel_run.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_readwrite.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_accept.pm M
+
+    Bring some timeouts and typo fixes over from POE. 
+
+  2008-05-30 04:06:28 (r2345) by rcaputo
+  poe-test-loops/bin/poe-gen-tests M
+
+    Fix a typo.
+
+  2008-05-29 15:01:48 (r2344) by rcaputo
+  poe-test-loops/bin/poe-gen-tests M
+
+    Support --loop POE::XS::Loop::Poll.
+
+====================================
 2008-03-24T05:18:08.488853Z ptl-0_98
 ====================================
 

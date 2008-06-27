@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                POE-Test-Loops
-version:             0.98
+version:             0.99
 abstract:            POE::Loop test suite
 license:             perl
 generated_by:        ExtUtils::MakeMaker version 6.31

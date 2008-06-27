@@ -9,7 +9,8 @@ SSYYNNOOPPSSIISS
          poe−gen−tests −−dirbase t/loops \
            −−loop Glib \
            −−loop Kqueue \
-           −−loop Event::Lib
+           −−loop Event::Lib \
+                       −−loop POE::XS::Loop::Poll
 
 DDEESSCCRRIIPPTTIIOONN
        This program and the accompanying POE::Test::Loop::* modules make up
@@ -58,9 +59,11 @@ UUSSAAGGEE
          t/loops/select/wheel_sf_unix.t
          t/loops/select/wheel_tail.t
 
-       The −−loop parameter completes the POE::Loop::... package name.  It may
-       be specified with namespaces separated by "::" or "_".  Event::Lib and
-       Event_Lib are identical as far as poe‐gen‐tests is concerned.
+       The −−loop parameter is either a POE::Loop::... class name or the event
+       loop class that will complete the POE::Loop::... package name.
+
+               poe−gen−tests −−dirbase t/loops −−loop Event::Lib
+               poe−gen−tests −−dirbase t/loops −−loop POE::Loop::Event_Lib
 
        poe‐gen‐tests looks for a "=for poe_tests" section within the POE::Loop
        class being tested.  If defined, this section should include a single
@@ -276,4 +279,4 @@ AAUUTTHHOORR && CCOOPPYYRRIIGGHHTT
 
 
 
-perl v5.8.8                       2008‐03‐24                  POE‐GEN‐TESTS(1)
+perl v5.8.8                       2008‐05‐30                  POE‐GEN‐TESTS(1)
