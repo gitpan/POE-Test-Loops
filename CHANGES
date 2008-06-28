@@ -1,3 +1,32 @@
+=====================================
+2008-06-28T20:29:11.954683Z ptl-1_000
+=====================================
+
+  2008-06-28 20:27:33 (r2369) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    Release time.
+
+  2008-06-28 20:18:48 (r2368) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops.pm M;
+  poe-test-loops/bin/poe-gen-tests M
+
+    Doc cleanups. 
+
+  2008-06-28 09:43:21 (r2367) by lotr
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    document generate() and mark the other functions as private 
+
+  2008-06-27 18:30:20 (r2366) by lotr
+  poe-test-loops/lib/POE/Test/Loops.pm M;
+  poe-test-loops/bin/poe-gen-tests M
+
+    rearrange code
+    
+    put all the logic from poe-gen-tests in POE::Test::Loops, so it can
+    be used from other modules without needing to execute poe-gen-tests. 
+
 ====================================
 2008-06-27T05:18:51.726499Z ptl-0_99
 ====================================

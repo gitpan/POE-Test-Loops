@@ -266,6 +266,9 @@ SSkkiippppiinngg NNeettwwoorrkk TTeessttss
 
          print "\n";
 
+SSEEEE AALLSSOO
+       POE::Test::Loops and POE::Loop.
+
 AAUUTTHHOORR && CCOOPPYYRRIIGGHHTT
        Rocco Caputo <rcaputo@cpan.org>.  Benjamin Smith <bsmith@cpan.org>.
        Countless other people.
@@ -279,4 +282,4 @@ AAUUTTHHOORR && CCOOPPYYRRIIGGHHTT
 
 
 
-perl v5.8.8                       2008‐05‐30                  POE‐GEN‐TESTS(1)
+perl v5.8.8                       2008‐06‐28                  POE‐GEN‐TESTS(1)
