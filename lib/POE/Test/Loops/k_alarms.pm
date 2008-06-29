@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: k_alarms.pm 2209 2007-08-11 09:14:58Z rcaputo $
+# $Id: k_alarms.pm 2371 2008-06-28 20:46:33Z rcaputo $
 
 # Tests alarms.
 
@@ -20,7 +20,8 @@ BEGIN { use_ok("POE") }
 
 # We need this because queue_peek_alarms was deprecated
 BEGIN {
- package POE::Kernel;
+ package # split to avoid CPAN indexer
+ POE::Kernel;
 
  sub queue_peek_alarms {
   my $self = shift;

@@ -1,4 +1,4 @@
-# $Id: Loops.pm 2369 2008-06-28 20:27:33Z rcaputo $
+# $Id: Loops.pm 2373 2008-06-29 05:15:05Z rcaputo $
 
 package POE::Test::Loops;
 
@@ -6,8 +6,8 @@ use strict;
 use vars qw($VERSION);
 
 use vars qw($VERSION $REVISION);
-$VERSION = '1.000'; # NOTE - Should be #.### (three decimal places)
-$REVISION = do {my($r)=(q$Revision: 2369 $=~/(\d+)/);sprintf"0.%04d",$r};
+$VERSION = '1.001'; # NOTE - Should be #.### (three decimal places)
+$REVISION = do {my($r)=(q$Revision: 2373 $=~/(\d+)/);sprintf"0.%04d",$r};
 
 use File::Spec;
 use File::Path;
@@ -139,6 +139,8 @@ sub _find_event_loop_file {
 }
 
 sub _get_loop_cfg {
+  my $fqmn = shift;
+
   my ($in_test_block, @test_source);
 
   open SOURCE, "<$fqmn" or die $!;
