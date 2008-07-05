@@ -1,4 +1,27 @@
 =====================================
+2008-07-05T02:26:48.235904Z ptl-1_002
+=====================================
+
+  2008-07-05 02:22:14 (r2381) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    New release! 
+
+  2008-07-04 21:56:30 (r2380) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/connect_errors.pm A;
+  poe-test-loops/MANIFEST M
+
+    Add Tony Cook's test for connect() errors. Some loops regster connect
+    errors differently than other I/O, such as POE::XS::Loop::Poll. This
+    covers the new condition. Resolves rt.cpan.org #37393. 
+
+  2008-07-04 20:41:20 (r2375) by rcaputo
+  poe-test-loops/bin/poe-gen-tests M
+
+    Invert the sense for the sample skip-network-tests questin. Resolves
+    rt.cpan.org #36277 submitted by Tony Cook. 
+
+=====================================
 2008-06-29T05:15:27.851946Z ptl-1_001
 =====================================
 

@@ -260,7 +260,7 @@ SSkkiippppiinngg NNeettwwoorrkk TTeessttss
 
          my $marker = ’run_network_tests’;
          unlink $marker;
-         if ($ret =~ /^Y$/i) {
+         unless ($ret =~ /^Y$/i) {
            open(TOUCH,"+>$marker") and close TOUCH;
          }
 
@@ -282,4 +282,4 @@ AAUUTTHHOORR && CCOOPPYYRRIIGGHHTT
 
 
 
-perl v5.8.8                       2008‐06‐28                  POE‐GEN‐TESTS(1)
+perl v5.8.8                       2008‐07‐04                  POE‐GEN‐TESTS(1)
