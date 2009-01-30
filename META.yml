@@ -1,14 +1,14 @@
 --- #YAML:1.0
 name:                POE-Test-Loops
-version:             1.002
+version:             1.003
 abstract:            POE::Loop test suite
 license:             perl
-generated_by:        ExtUtils::MakeMaker version 6.31
+author:              
+    - Rocco Caputo <rcaputo@cpan.org>
+generated_by:        ExtUtils::MakeMaker version 6.42
 distribution_type:   module
 requires:     
     Test::More:                    0
 meta-spec:
-    url:     http://module-build.sourceforge.net/META-spec-v1.2.html
-    version: 1.2
-author:
-    - Rocco Caputo <rcaputo@cpan.org>
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3

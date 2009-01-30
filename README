@@ -10,7 +10,7 @@ SSYYNNOOPPSSIISS
            −−loop Glib \
            −−loop Kqueue \
            −−loop Event::Lib \
-                       −−loop POE::XS::Loop::Poll
+           −−loop POE::XS::Loop::Poll
 
 DDEESSCCRRIIPPTTIIOONN
        This program and the accompanying POE::Test::Loop::* modules make up
@@ -38,6 +38,7 @@ UUSSAAGGEE
          t/loops/select/all_errors.t
          t/loops/select/comp_tcp.t
          t/loops/select/comp_tcp_concurrent.t
+         t/loops/select/connect_errors.t
          t/loops/select/k_alarms.t
          t/loops/select/k_aliases.t
          t/loops/select/k_detach.t
@@ -62,8 +63,8 @@ UUSSAAGGEE
        The −−loop parameter is either a POE::Loop::... class name or the event
        loop class that will complete the POE::Loop::... package name.
 
-               poe−gen−tests −−dirbase t/loops −−loop Event::Lib
-               poe−gen−tests −−dirbase t/loops −−loop POE::Loop::Event_Lib
+         poe−gen−tests −−dirbase t/loops −−loop Event::Lib
+         poe−gen−tests −−dirbase t/loops −−loop POE::Loop::Event_Lib
 
        poe‐gen‐tests looks for a "=for poe_tests" section within the POE::Loop
        class being tested.  If defined, this section should include a single
@@ -219,7 +220,7 @@ SSkkiippppiinngg NNeettwwoorrkk TTeessttss
        time after asking the user.  Here’s how POE does it.  Naturally you’re
        free to do it some other way.
 
-         # Switch to default behavior if STDIN isn’t a tty.
+         # Switch to default behavior if STDIN isn't a tty.
 
          unless (−t STDIN) {
            warn(
@@ -245,8 +246,8 @@ SSkkiippppiinngg NNeettwwoorrkk TTeessttss
          # Should we run the network tests?
 
          my $prompt = (
-           "Some of POE’s tests require a functional network.\n" .
-           "You can skip these tests if you’d like.\n\n" .
+           "Some of POE's tests require a functional network.\n" .
+           "You can skip these tests if you'd like.\n\n" .
            "Would you like to skip the network tests?"
          );
 
@@ -258,13 +259,25 @@ SSkkiippppiinngg NNeettwwoorrkk TTeessttss
            $ret = prompt($prompt, "n");
          }
 
-         my $marker = ’run_network_tests’;
+         my $marker = 'run_network_tests';
          unlink $marker;
          unless ($ret =~ /^Y$/i) {
            open(TOUCH,"+>$marker") and close TOUCH;
          }
 
          print "\n";
+
+SSkkiippppiinngg OOtthheerr TTeessttss
+       POE’s loop tests will enable or disable tests based on the event loop’s
+       capabilities.  Distributions and event loops may set these variables to
+       signal which tests are okay to run.
+
+       PPOOEE__LLOOOOPP__UUSSEESS__PPOOLLLL
+
+       Some platforms do not support _p_o_l_l_(_) on certain kinds of filehandles.
+       Event loops that use _p_o_l_l_(_) should set this environment variable to a
+       true value.  It will cause the tests to skip this troublesome
+       combination.
 
 SSEEEE AALLSSOO
        POE::Test::Loops and POE::Loop.
@@ -282,4 +295,4 @@ AAUUTTHHOORR && CCOOPPYYRRIIGGHHTT
 
 
 
-perl v5.8.8                       2008‐07‐04                  POE‐GEN‐TESTS(1)
+perl v5.10.0                      2009‐01‐30                  POE‐GEN‐TESTS(1)

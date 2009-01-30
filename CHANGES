@@ -1,4 +1,18 @@
 =====================================
+2009-01-30T07:11:18.435237Z ptl-1_003
+=====================================
+
+  2009-01-30 07:04:44 (r2411) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/wheel_run.pm M;
+  poe-test-loops/lib/POE/Test/Loops.pm M;
+  poe-test-loops/bin/poe-gen-tests M
+
+    Apply Tony Cook's suggestion to use environment variables to skip
+    problematic tests. Event loops which have these problems can bypass
+    tests which are known to fail. Also fixed a documentation omission
+    based on his comments in IRC. 
+
+=====================================
 2008-07-05T02:26:48.235904Z ptl-1_002
 =====================================
 
@@ -120,76 +134,6 @@
     Add keyword expansion to files that didn't have it set.
     
     Bump the version to 0.98. 
-
-====================================
-2007-08-13T06:54:50.727310Z ptl-0_97
-====================================
-
-  2007-08-13 06:52:41 (r2216) by rcaputo
-  poe-test-loops/bin/poe-gen-tests M
-
-    Roll the version back to 0.97 for release.
-
-  2007-08-13 06:52:24 (r2215) by rcaputo; poe-test-loops/Makefile.PL M
-
-    Only report on tags matching ^ptl- 
-
-  2007-08-12 22:48:36 (r2214) by rcaputo
-  poe-test-loops/bin/poe-gen-tests M
-
-    Majorly simplify the code. Document the new conventions. 
-
-  2007-08-12 05:46:32 (r2213) by rcaputo
-  poe-test-loops/bin/poe-gen-tests M
-
-    Document how to specify more tests.
-
-  2007-08-11 18:12:49 (r2212) by rcaputo; poe-test-loops/Makefile.PL M
-
-    Add poe-gen-tests to EXE_FILES, ensuring it will be installed
-    somewhere good.
-
-  2007-08-11 18:08:55 (r2211) by rcaputo
-  poe-test-loops/Makefile.PL M; poe-test-loops/bin/poe-gen-tests M
-
-    Document more magic, converting it to merely technology. 
-
-  2007-08-11 09:18:48 (r2210) by rcaputo
-  poe-test-loops/t/01_no_tests.t A; poe-test-loops/MANIFEST A;
-  poe-test-loops/Makefile.PL A; poe-test-loops/lib/POE/Test/DondeEstan.pm
-  A; poe-test-loops/bin/poe-gen-tests A
-
-    More additions. 
-
-  2007-08-11 09:14:58 (r2209) by rcaputo
-  poe-test-loops/t A; poe-test-loops/lib/POE/Test/Loops A;
-  poe-test-loops/lib/POE/Test/Loops/k_signals_rerun.pm A;
-  poe-test-loops/lib A; poe-test-loops/lib/POE/Test/Loops/wheel_run.pm A;
-  poe-test-loops/lib/POE/Test/Loops/wheel_curses.pm A; poe-test-loops/bin
-  A; poe-test-loops/lib/POE/Test A;
-  poe-test-loops/lib/POE/Test/Loops/k_alarms.pm A;
-  poe-test-loops/lib/POE/Test/Loops/k_aliases.pm A;
-  poe-test-loops/lib/POE/Test/Loops/ses_session.pm A;
-  poe-test-loops/lib/POE/Test/Loops/wheel_sf_unix.pm A;
-  poe-test-loops/lib/POE/Test/Loops/sbk_signal_init.pm A;
-  poe-test-loops/lib/POE/Test/Loops/k_sig_child.pm A;
-  poe-test-loops/lib/POE/Test/Loops/wheel_sf_ipv6.pm A;
-  poe-test-loops/lib/POE/Test/Loops/k_detach.pm A;
-  poe-test-loops/lib/POE/Test/Loops/wheel_sf_tcp.pm A;
-  poe-test-loops/lib/POE/Test/Loops/comp_tcp.pm A;
-  poe-test-loops/lib/POE/Test/Loops/all_errors.pm A;
-  poe-test-loops/lib/POE/Test/Loops/wheel_sf_udp.pm A;
-  poe-test-loops/lib/POE/Test/Loops/comp_tcp_concurrent.pm A;
-  poe-test-loops/lib/POE/Test/Loops/wheel_readline.pm A;
-  poe-test-loops/lib/POE/Test/Loops/k_signals.pm A;
-  poe-test-loops/lib/POE A;
-  poe-test-loops/lib/POE/Test/Loops/wheel_readwrite.pm A;
-  poe-test-loops/lib/POE/Test/Loops/k_selects.pm A;
-  poe-test-loops/lib/POE/Test/Loops/wheel_tail.pm A;
-  poe-test-loops/lib/POE/Test/Loops/ses_nfa.pm A; poe-test-loops A;
-  poe-test-loops/lib/POE/Test/Loops/wheel_accept.pm A
-
-    Initial add. Hoping the svn copy from POE will preserve history. 
 
 ==============
 End of Excerpt
