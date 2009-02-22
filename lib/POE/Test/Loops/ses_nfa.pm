@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: ses_nfa.pm 2209 2007-08-11 09:14:58Z rcaputo $
+# $Id: ses_nfa.pm 2453 2009-02-17 12:27:29Z lotr $
 
 # Tests NFA sessions.
 
@@ -10,9 +10,19 @@ sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 sub POE::Kernel::TRACE_DEFAULT  () { 1 }
 sub POE::Kernel::TRACE_FILENAME () { "./test-output.err" }
 
-use Test::More tests => 28;
+use Test::More;
 
 use POE qw(NFA);
+my $NEW_POE;
+BEGIN {
+  if ($POE::VERSION <= 1.003) {
+    $NEW_POE = 0;
+    plan tests => 28;
+  } else {
+    $NEW_POE = 1;
+    plan tests => 39;
+  }
+}
 
 ### Plain NFA.  This simulates a pushbutton that toggles a light.
 ### This goes in its own package because POE::Session and POE::NFA
@@ -21,43 +31,87 @@ use POE qw(NFA);
 package Switch;
 use POE::NFA;
 
-POE::NFA->spawn(
+sub new {
+  my $class = shift;
+
+  return bless {}, $class;
+}
+
+sub _default {
+  0;
+}
+
+sub off_enter {
+  Test::More::is($_[OBJECT], 'Switch', '$_[OBJECT] is a package')
+    if ($NEW_POE);
+  $_[KERNEL]->post( $_[ARG0] => visibility => 0 );
+}
+
+sub off_pushed {
+  $_[MACHINE]->goto_state( on => enter => $_[SENDER] );
+}
+
+sub enter {
+  Test::More::isa_ok($_[OBJECT], 'Switch', '$_[OBJECT]')
+    if ($NEW_POE);
+  $_[KERNEL]->post( $_[ARG0] => visibility => 1 );
+}
+
+sub pushed {
+  $_[MACHINE]->goto_state( off => enter => $_[SENDER] );
+}
+
+my $self = Switch->new;
+
+my $args = {
   inline_states => {
    # The initial state, and its start event.  Make the switch
    # visible by name, and start in the 'off' state.
    initial => {
      start => sub {
+      Test::More::is($_[OBJECT], undef, 'no object')
+       if ($NEW_POE);
        $_[KERNEL]->alias_set( 'switch' );
        $_[MACHINE]->goto_state( 'off' );
      },
-     _default => sub { 0 },
+     _default => \&_default,
    },
-   # The light is off.  When this state is entered, post a
-   # visibility event at whatever had caused the light to go off.
-   # When it's pushed, have the light go on.
-   off => {
-     enter => sub {
-       $_[KERNEL]->post( $_[ARG0] => visibility => 0 );
+ },
+};
+
+if ($NEW_POE) {
+  $args->{package_states} = {
+   off => [
+     Switch => {
+       enter => 'off_enter',
+       pushed => 'off_pushed',
+       _default => '_default',
      },
-     pushed => sub {
-       $_[MACHINE]->goto_state( on => enter => $_[SENDER] );
-     },
-     _default => sub { 0 },
-   },
+   ],
+  };
+  $args->{object_states} = {
    # The light is on.  When this state is entered, post a visibility
    # event at whatever had caused the light to go on.  When it's
    # pushed, have the light go off.
-   on => {
-     enter => sub {
-       $_[KERNEL]->post( $_[ARG0] => visibility => 1 );
-     },
-     pushed => sub {
-       $_[MACHINE]->goto_state( off => enter => $_[SENDER] );
-     },
-     _default => sub { 0 },
-   },
+   on => [
+     $self => [qw(enter pushed _default)],
+   ],
   },
-)->goto_state( initial => 'start' );  # enter the initial state
+} else {
+  $args->{inline_states}->{off} = {
+    enter => \&off_enter,
+    pushed => \&off_pushed,
+    _default => \&_default,
+  };
+  $args->{inline_states}->{on} = {
+    enter => \&enter,
+    pushed => \&pushed,
+    _default => \&_default,
+  };
+}
+
+POE::NFA->spawn(%$args)
+  ->goto_state( initial => 'start' );  # enter the initial state
 
 ### This NFA uses the stop() method.  Gabriel Kihlman discovered that
 ### POE::NFA lags behind POE::Kernel after 0.24, and stop() wasn't
@@ -225,8 +279,9 @@ POE::NFA->spawn(
         $_[KERNEL]->alias_set( 'dynamicstates' );
         $_[MACHINE]->goto_state( 'listen', 'send' );
         $_[KERNEL]->state("test_wheel_event" => sub {
-            POE::Kernel->yield("happened");
-          } );
+            $_[KERNEL]->yield("happened");
+          }
+        );
 
         # test options
         my $orig = $_[MACHINE]->option(default => 1);
@@ -234,7 +289,7 @@ POE::NFA->spawn(
         Test::More::ok($rv, "set default option successfully");
         $rv = $_[MACHINE]->option('default' => $orig);
         Test::More::ok($rv, "reset default option successfully");
-        my $rv = $_[MACHINE]->option('default');
+        $rv = $_[MACHINE]->option('default');
         Test::More::ok(!($rv xor $orig), "reset default option successfully");
 
         # test (post|call)backs

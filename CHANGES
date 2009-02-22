@@ -1,3 +1,56 @@
+========================================
+2009-02-22T19:38:13.077615Z ptl-1_003_01
+========================================
+
+  2009-02-22 19:37:04 (r2459) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    Time for a new DEVELOPER release.
+
+  2009-02-22 19:25:46 (r2458) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    Time for a new release.
+
+  2009-02-17 12:27:29 (r2453) by lotr
+  poe-test-loops/lib/POE/Test/Loops/ses_nfa.pm M
+
+    remove spurious warns
+
+  2009-02-17 11:20:27 (r2452) by lotr
+  poe-test-loops/lib/POE/Test/Loops/wheel_readline.pm M
+
+    match up missing brace 
+
+  2009-02-17 11:18:59 (r2451) by lotr
+  poe-test-loops/lib/POE/Test/Loops/ses_nfa.pm M
+
+    only run the object/package state tests if we have a new enough POE 
+
+  2009-02-17 08:03:49 (r2450) by rcaputo
+  poe/lib/POE/Wheel/ReadLine.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_readline.pm M
+
+    Resolve rt.cpan.org #38974, reported by Jari Bonte. If TERM is
+    misset, we will skip the POE::Wheel::ReadLine test rather than fail. 
+
+  2009-02-16 11:23:16 (r2444) by apocal
+  poe-test-loops/lib/POE/Test/Loops/sbk_signal_init.pm M
+
+    skip test because of broken alarm() on MSWin32 with perl5.6
+
+  2009-02-16 10:34:12 (r2440) by lotr
+  poe-test-loops/lib/POE/Test/Loops/ses_nfa.pm M
+
+    use object and package_states in NFA tests to make sure it works 
+
+  2009-02-10 09:05:42 (r2426) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/wheel_readwrite.pm M;
+  poe-test-loops/lib/POE/Test/Loops/ses_session.pm M;
+  poe-test-loops/lib/POE/Test/Loops/ses_nfa.pm M
+
+    Remove some warnings. 
+
 =====================================
 2009-01-30T07:11:18.435237Z ptl-1_003
 =====================================
