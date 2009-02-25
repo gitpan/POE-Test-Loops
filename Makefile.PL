@@ -1,4 +1,4 @@
-# $Id: Makefile.PL 2299 2008-03-24 05:11:33Z rcaputo $
+# $Id: Makefile.PL 2463 2009-02-23 12:29:33Z lotr $
 
 use ExtUtils::MakeMaker;
 
@@ -14,6 +14,7 @@ WriteMakefile(
   VERSION_FROM => 'lib/POE/Test/Loops.pm',
   PREREQ_PM    => {
     'Test::More' => 0,
+    'version' => '0.74',
   },
   EXE_FILES    => [ 'bin/poe-gen-tests' ],
   dist         => {

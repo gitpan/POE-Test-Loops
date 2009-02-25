@@ -1,4 +1,20 @@
 ========================================
+2009-02-25T08:10:39.611140Z ptl-1_003_02
+========================================
+
+  2009-02-25 08:09:16 (r2468) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    Time for a new release.
+
+  2009-02-23 12:29:33 (r2463) by lotr
+  poe-test-loops/Makefile.PL M;
+  poe-test-loops/lib/POE/Test/Loops/ses_nfa.pm M
+
+    use version.pm so our version comparison is more robust and supports
+    developer releases too 
+
+========================================
 2009-02-22T19:38:13.077615Z ptl-1_003_01
 ========================================
 

@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: ses_nfa.pm 2453 2009-02-17 12:27:29Z lotr $
+# $Id: ses_nfa.pm 2463 2009-02-23 12:29:33Z lotr $
 
 # Tests NFA sessions.
 
@@ -11,11 +11,12 @@ sub POE::Kernel::TRACE_DEFAULT  () { 1 }
 sub POE::Kernel::TRACE_FILENAME () { "./test-output.err" }
 
 use Test::More;
+use version 0.74;
 
 use POE qw(NFA);
 my $NEW_POE;
 BEGIN {
-  if ($POE::VERSION <= 1.003) {
+  if (version->new($POE::VERSION) <= 1.003) {
     $NEW_POE = 0;
     plan tests => 28;
   } else {
