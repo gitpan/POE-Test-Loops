@@ -1,6 +1,35 @@
-========================================
-2009-02-25T08:10:39.611140Z ptl-1_003_02
-========================================
+======================================
+9999-99-99 99:99:99.999999Z (untagged)
+======================================
+
+  2009-03-02 00:06:17 (r2487) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    New test release.
+
+  2009-03-01 22:26:44 (r2486) by apocal
+  poe-test-loops/Makefile.PL M;
+  poe-test-loops/lib/POE/Test/Loops/ses_nfa.pm M
+
+    Remove the specific dependency on version 0.74, and pray that the
+    user has a recent enough version
+
+  2009-03-01 13:31:26 (r2477) by apocal
+  poe-test-loops/lib/POE/Test/Loops/wheel_tail.pm M
+
+    I was overzealous, this test works in Strawberry Perl, not
+    ActiveState...
+
+  2009-03-01 12:53:59 (r2476) by apocal
+  poe-test-loops/lib/POE/Test/Loops/connect_errors.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_tail.pm M
+
+    more tweaks to get the tests to SKIP on buggy MSWin32 perls :(
+
+  2009-03-01 08:21:04 (r2475) by apocal
+  poe-test-loops/lib/POE/Test/Loops/wheel_accept.pm M
+
+    tweak the test so it passes on MSWin32+ActiveState 5.6.1
 
   2009-02-25 08:09:16 (r2468) by rcaputo
   poe-test-loops/lib/POE/Test/Loops.pm M
@@ -13,10 +42,6 @@
 
     use version.pm so our version comparison is more robust and supports
     developer releases too 
-
-========================================
-2009-02-22T19:38:13.077615Z ptl-1_003_01
-========================================
 
   2009-02-22 19:37:04 (r2459) by rcaputo
   poe-test-loops/lib/POE/Test/Loops.pm M
