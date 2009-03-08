@@ -1,4 +1,15 @@
 =====================================
+2009-03-08T00:34:03.909445Z ptl-1_005
+=====================================
+
+  2009-03-08 00:33:21 (r2497) by rcaputo
+  poe-test-loops/Makefile.PL M;
+  poe-test-loops/lib/POE/Test/Loops/ses_nfa.pm M;
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    Remove version.pm dependency.
+
+=====================================
 2009-03-07T18:54:28.797464Z ptl-1_004
 =====================================
 
