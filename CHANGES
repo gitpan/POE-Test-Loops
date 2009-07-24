@@ -1,4 +1,56 @@
 =====================================
+2009-07-24T04:37:05.604140Z ptl-1_020
+=====================================
+
+  2009-07-24 04:33:31 (r2597) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    New version for a new release.
+
+  2009-07-22 20:24:33 (r2596) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/z_kogman_sig_order.pm M
+
+    Plan for a specific test count. Sometimes the no_plan end-run plan
+    doesn't get output, breaking the test despite all subtests passing. 
+
+  2009-07-21 02:22:58 (r2586) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld_stop.pm M
+
+    Conditionally call has_forked() if it's available. Should prevent
+    issues where the tests are released before the feature. Also, moved
+    has_forked() earlier because it was called too early for new
+    PID-change checks contributed by Philip Gwyn. 
+
+  2009-07-20 08:40:10 (r2583) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld_stop.pm M
+
+    Add a bit of debugging. Add a delay before POE is loaded, in case the
+    race is between the test framework's Tk detection and POE
+    initializing Tk at start time. To avoid unnecessary delays, make them
+    dependent on Tk being loaded. 
+
+  2009-07-20 07:34:01 (r2582) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld_stop.pm M
+
+    This test causes Tk or X to throw an error if it's run too soon after
+    the previous test. Add a 2sec delay before the test to give the GUI
+    time to settle down. 
+
+  2009-07-20 06:19:54 (r2580) by rcaputo
+  poe-test-loops/MANIFEST M;
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld.pm A;
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld_stop.pm A;
+  poe-test-loops/lib/POE/Test/Loops/z_merijn_sigchld_system.pm A;
+  poe-test-loops/lib/POE/Test/Loops.pm M;
+  poe-test-loops/lib/POE/Test/Loops/z_steinert_signal_integrity.pm A;
+  poe-test-loops/lib/POE/Test/Loops/z_kogman_sig_order.pm A
+
+    Promote some of the signal-related regression tests into the event
+    loop tests. Event loops handle signals in a variety of ways, so they
+    should all try these tests. Except the one commented out of the
+    MANIFEST, as it has a tendency to segfault for people. 
+
+=====================================
 2009-03-08T00:34:03.909445Z ptl-1_005
 =====================================
 
@@ -121,129 +173,6 @@
     problematic tests. Event loops which have these problems can bypass
     tests which are known to fail. Also fixed a documentation omission
     based on his comments in IRC. 
-
-=====================================
-2008-07-05T02:26:48.235904Z ptl-1_002
-=====================================
-
-  2008-07-05 02:22:14 (r2381) by rcaputo
-  poe-test-loops/lib/POE/Test/Loops.pm M
-
-    New release! 
-
-  2008-07-04 21:56:30 (r2380) by rcaputo
-  poe-test-loops/lib/POE/Test/Loops/connect_errors.pm A;
-  poe-test-loops/MANIFEST M
-
-    Add Tony Cook's test for connect() errors. Some loops regster connect
-    errors differently than other I/O, such as POE::XS::Loop::Poll. This
-    covers the new condition. Resolves rt.cpan.org #37393. 
-
-  2008-07-04 20:41:20 (r2375) by rcaputo
-  poe-test-loops/bin/poe-gen-tests M
-
-    Invert the sense for the sample skip-network-tests questin. Resolves
-    rt.cpan.org #36277 submitted by Tony Cook. 
-
-=====================================
-2008-06-29T05:15:27.851946Z ptl-1_001
-=====================================
-
-  2008-06-29 05:15:05 (r2373) by rcaputo
-  poe-test-loops/lib/POE/Test/Loops.pm M
-
-    Bugfix release.
-
-  2008-06-28 21:33:14 (r2372) by lotr
-  poe-test-loops/lib/POE/Test/Loops.pm M
-
-    oops, we really do need this. 
-
-  2008-06-28 20:46:33 (r2371) by rcaputo
-  poe-test-loops/lib/POE/Test/Loops/k_alarms.pm M
-
-    Fix a package indexer error.
-
-=====================================
-2008-06-28T20:29:11.954683Z ptl-1_000
-=====================================
-
-  2008-06-28 20:27:33 (r2369) by rcaputo
-  poe-test-loops/lib/POE/Test/Loops.pm M
-
-    Release time.
-
-  2008-06-28 20:18:48 (r2368) by rcaputo
-  poe-test-loops/lib/POE/Test/Loops.pm M;
-  poe-test-loops/bin/poe-gen-tests M
-
-    Doc cleanups. 
-
-  2008-06-28 09:43:21 (r2367) by lotr
-  poe-test-loops/lib/POE/Test/Loops.pm M
-
-    document generate() and mark the other functions as private 
-
-  2008-06-27 18:30:20 (r2366) by lotr
-  poe-test-loops/lib/POE/Test/Loops.pm M;
-  poe-test-loops/bin/poe-gen-tests M
-
-    rearrange code
-    
-    put all the logic from poe-gen-tests in POE::Test::Loops, so it can
-    be used from other modules without needing to execute poe-gen-tests. 
-
-====================================
-2008-06-27T05:18:51.726499Z ptl-0_99
-====================================
-
-  2008-06-27 04:51:21 (r2363) by rcaputo
-  poe-test-loops/lib/POE/Test/Loops.pm M
-
-    Bump up the version.
-
-  2008-06-27 04:50:41 (r2362) by rcaputo
-  poe-test-loops/lib/POE/Test/Loops/wheel_run.pm M;
-  poe-test-loops/lib/POE/Test/Loops/wheel_readwrite.pm M;
-  poe-test-loops/lib/POE/Test/Loops/wheel_accept.pm M
-
-    Bring some timeouts and typo fixes over from POE. 
-
-  2008-05-30 04:06:28 (r2345) by rcaputo
-  poe-test-loops/bin/poe-gen-tests M
-
-    Fix a typo.
-
-  2008-05-29 15:01:48 (r2344) by rcaputo
-  poe-test-loops/bin/poe-gen-tests M
-
-    Support --loop POE::XS::Loop::Poll.
-
-====================================
-2008-03-24T05:18:08.488853Z ptl-0_98
-====================================
-
-  2008-03-24 05:11:33 (r2299) by rcaputo
-  poe-test-loops/t/01_no_tests.t M;
-  poe-test-loops/lib/POE/Test/Loops/k_signals_rerun.pm M;
-  poe-test-loops/lib/POE/Test/Loops/comp_tcp_concurrent.pm M;
-  poe-test-loops/MANIFEST M;
-  poe-test-loops/lib/POE/Test/Loops/wheel_readline.pm M;
-  poe-test-loops/lib/POE/Test/DondeEstan.pm M; poe-test-loops/Makefile.PL
-  M; poe-test-loops/lib/POE/Test/Loops/wheel_curses.pm M;
-  poe-test-loops/lib/POE/Test/Loops/wheel_run.pm M;
-  poe-test-loops/lib/POE/Test/Loops/wheel_sf_ipv6.pm M;
-  poe-test-loops/lib/POE/Test/Loops.pm A;
-  poe-test-loops/bin/poe-gen-tests M
-
-    Update tests to match POE 0.9999_03.
-    
-    Add POE::Test::Loops and move the VERSION number there so that the
-    package name can be installed and/or depended upon.
-    
-    Add keyword expansion to files that didn't have it set.
-    
-    Bump the version to 0.98. 
 
 ==============
 End of Excerpt

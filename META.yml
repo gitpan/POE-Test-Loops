@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                POE-Test-Loops
-version:             1.005
+version:             1.020
 abstract:            POE::Loop test suite
 license:             perl
 author:              
