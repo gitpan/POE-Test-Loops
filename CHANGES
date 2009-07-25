@@ -1,4 +1,16 @@
 =====================================
+2009-07-25T17:41:01.181408Z ptl-1_021
+=====================================
+
+  2009-07-25 17:35:34 (r2599) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/sbk_signal_init.pm M;
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    Can't sleep! HP-UX will get me! Resolves Dolmen's bug report at
+    rt.cpan.org 45158 by using select(undef,undef,undef,$time) instead of
+    sleep(). I hope that actually works. 
+
+=====================================
 2009-07-24T04:37:05.604140Z ptl-1_020
 =====================================
 

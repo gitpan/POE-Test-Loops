@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: sbk_signal_init.pm 2444 2009-02-16 11:23:16Z apocal $
+# $Id: sbk_signal_init.pm 2599 2009-07-25 17:35:34Z rcaputo $
 
 # Tests whether POE::Kernel affects signal handlers at initialization
 # time.  Based on test code provided by Stuart Kendrick, in
@@ -29,7 +29,17 @@ sub dispatch_normal_signal { $signal_dispatched = 1 }
 use POE;
 
 alarm(1);
-sleep 5;
+
+if ($^O eq "MSWin32") {
+	# Cant' select. Windows will get me!
+	# Windows has trouble with select() and undefined input vectors.
+	sleep(5);
+}
+else {
+	# Can't sleep. HP-UX will get me!
+	# HP-UX implements sleep() with alarm(), so they don't mix.
+	select(undef, undef, undef, 5);
+}
 
 ok($signal_dispatched, "normal SIGALRM dispatched");
 
