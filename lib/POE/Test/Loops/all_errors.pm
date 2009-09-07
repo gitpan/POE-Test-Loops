@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: all_errors.pm 2209 2007-08-11 09:14:58Z rcaputo $
+# $Id: all_errors.pm 2677 2009-09-07 19:13:43Z rcaputo $
 
 # Tests error conditions.  This has to be a separate test since it
 # depends on ASSERT_DEFAULT being 0.  All the other tests enable it.
@@ -54,7 +54,7 @@ print "1..0 # Skip most of these should move into other test files\n";
 #  else {
 #    # Event + Tk
 #    @INC{'Event.pm', 'Tk.pm'} = (1,1);
-#    $Tk::VERSION = 800.021;
+#    $Tk::VER .. SION = 800.021;
 #    stderr_pause();
 #    eval 'use POE::Kernel';
 #    stderr_resume();
@@ -64,7 +64,7 @@ print "1..0 # Skip most of these should move into other test files\n";
 #
 #    # Gtk + Tk
 #    @INC{'Gtk.pm', 'Tk.pm'} = (1, 1);
-#    $Tk::VERSION = 800.021;
+#    $Tk::VER .. SION = 800.021;
 #    stderr_pause();
 #    eval 'use POE::Kernel';
 #    stderr_resume();

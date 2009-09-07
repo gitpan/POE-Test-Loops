@@ -1,4 +1,79 @@
 =====================================
+2009-09-07T19:22:59.577723Z ptl-1_022
+=====================================
+
+  2009-09-07 19:13:43 (r2677) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/all_errors.pm M;
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    Bump up the version, and prevent perl-reversion from seeing test
+    version strings (that are commented out, no less). 
+
+  2009-09-06 03:32:57 (r2675) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/comp_tcp.pm M
+
+    [rt 36648] Add tests for the new Client and Server TCP component
+    capabilities. 
+
+  2009-09-05 17:56:52 (r2672) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/comp_tcp.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_tail.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_sf_ipv6.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_sf_tcp.pm M
+
+    [rt 49384] Explicitly bind to 127.0.0.1 in tests, reported
+    anonymously. [cpan testers 5241203] Bind to INPORT_ANY to avoid
+    "address already in use" failures, reported by Oliver Paukstadt. 
+
+  2009-09-04 07:49:18 (r2671) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/wheel_run.pm M
+
+    Make write-combining test optional. The timing of some event loops
+    triggers write-combining, and others don't. Resolves rt.cpan.org
+    28804 (finally!), reported by Martijn van Beers. 
+
+  2009-09-04 04:28:55 (r2668) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld.pm M;
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld_stop.pm M
+
+    Tk and fork() don't get along well. Skip some fork() based tests when
+    Tk is loaded, to avoid XIO errors that have shown up in FreeBSD. 
+
+  2009-09-03 16:08:06 (r2665) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/k_signals_rerun.pm M;
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld.pm M;
+  poe-test-loops/lib/POE/Test/Loops/z_leolo_wheel_run.pm M;
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld_stop.pm M
+
+    Skip pty tests in z_leolo_wheel_run.pm on MSWin32. Change some skip
+    messages. 
+
+  2009-08-08 08:25:22 (r2625) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/z_leolo_wheel_run.pm M
+
+    Skip a known issue regarding pseudy-ttys, Event, and Mac OS X. On OS
+    X, poll() returns POLLNVAL for pseudo-ttys. Event cancels its
+    watchers in this case without a callback. 
+
+  2009-08-08 04:56:28 (r2623) by rcaputo
+  poe/t/90_regression/leolo-poe-wheel-run.t D; poe-test-loops/MANIFEST M;
+  poe-test-loops/lib/POE/Test/Loops/z_leolo_wheel_run.pm A
+
+    Move Philip Gwyn's signals test to POE::Test::Loops, so it can
+    exercise everyone's event loops. 
+
+  2009-07-27 17:07:20 (r2608) by rcaputo
+  poe-test-loops/bin/poe-gen-tests M
+
+    Reorganize documentation links.
+
+  2009-07-27 05:10:57 (r2605) by rcaputo
+  poe-test-loops/Makefile.PL M; poe-test-loops/bin/poe-gen-tests M
+
+    Added a machine-readable repository directory to the distribution.
+    Documented the bug tracker, repository, and other resource URLs. 
+
+=====================================
 2009-07-25T17:41:01.181408Z ptl-1_021
 =====================================
 

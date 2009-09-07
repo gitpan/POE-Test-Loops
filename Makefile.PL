@@ -1,4 +1,4 @@
-# $Id: Makefile.PL 2497 2009-03-08 00:33:21Z rcaputo $
+# $Id: Makefile.PL 2605 2009-07-27 05:10:57Z rcaputo $
 
 use ExtUtils::MakeMaker;
 
@@ -12,6 +12,13 @@ WriteMakefile(
   ABSTRACT     => 'POE::Loop test suite',
   LICENSE      => 'perl',
   VERSION_FROM => 'lib/POE/Test/Loops.pm',
+  META_ADD     => {
+    resources  => {
+      license    => 'http://dev.perl.org/licenses/',
+      repository =>
+        'https://poe.svn.sourceforge.net/svnroot/poe/trunk/poe-test-loops'
+    },
+  },
   PREREQ_PM    => {
     'Test::More' => 0,
   },

@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: wheel_sf_ipv6.pm 2299 2008-03-24 05:11:33Z rcaputo $
+# $Id: wheel_sf_ipv6.pm 2672 2009-09-05 17:56:52Z rcaputo $
 
 # Exercises Client and Server TCP components, which exercise
 # SocketFactory in AF_INET6 mode.
@@ -46,7 +46,7 @@ sub POE::Kernel::TRACE_FILENAME () { "./test-output.err" }
 
 use POE qw( Component::Client::TCP Component::Server::TCP );
 
-my $tcp_server_port = 31909;
+my $tcp_server_port;
 
 # Congratulations! We made it this far!
 use Test::More tests => 3;
@@ -58,7 +58,7 @@ diag( "packets across your localhost interface." );
 # Start the TCP server.
 
 POE::Component::Server::TCP->new(
-  Port               => $tcp_server_port,
+  Port               => 0,
   Address            => '::1',
   Domain             => Socket6::AF_INET6,
   Alias              => 'server',
@@ -68,6 +68,11 @@ POE::Component::Server::TCP->new(
   ClientDisconnected => \&server_got_disconnect,
   Error              => \&server_got_error,
   ClientError        => sub { }, # Hush a warning.
+  Started            => sub {
+    $tcp_server_port = (
+      Socket6::unpack_sockaddr_in6($_[HEAP]->{listener}->getsockname())
+    )[0];
+  },
 );
 
 sub server_got_connect {

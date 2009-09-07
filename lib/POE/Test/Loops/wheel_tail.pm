@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: wheel_tail.pm 2477 2009-03-01 13:31:26Z apocal $
+# $Id: wheel_tail.pm 2672 2009-09-05 17:56:52Z rcaputo $
 
 # Exercises Wheel::FollowTail, Wheel::ReadWrite, and Filter::Block.
 # -><- Needs tests for Seek and SeekBack.
@@ -52,7 +52,7 @@ use POE qw(
 
 sub DEBUG () { 0 }
 
-my $tcp_server_port = 31909;
+my $tcp_server_port;
 my $max_send_count  = 10;    # expected to be even
 
 ###############################################################################
@@ -240,7 +240,8 @@ sub client_tcp_got_flush {
 # Start the TCP server and client.
 
 POE::Component::Server::TCP->new(
-  Port     => $tcp_server_port,
+  Port     => 0,
+  Address  => '127.0.0.1',
   Acceptor => sub {
     &sss_new(@_[ARG0..ARG2]);
     # This next badness is just for testing.
@@ -251,9 +252,14 @@ POE::Component::Server::TCP->new(
     $addr = inet_ntoa($addr);
 
     ok(
-      ($addr eq '0.0.0.0') && ($port == $tcp_server_port),
+      ($addr eq '127.0.0.1') && ($port == $tcp_server_port),
       "received connection"
     );
+  },
+  Started  => sub {
+    $tcp_server_port = (
+      sockaddr_in($_[HEAP]->{listener}->getsockname())
+    )[0];
   },
 );
 
