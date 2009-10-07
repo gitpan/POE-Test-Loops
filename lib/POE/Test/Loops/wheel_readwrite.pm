@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+# vim: ts=2 sw=2 expandtab
 
 use strict;
 use warnings;
@@ -7,6 +8,11 @@ use IO::File;
 use Test::More tests => 28;
 
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
+
+BEGIN {
+  package POE::Kernel;
+  use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
+}
 use POE qw(Filter::Map Driver::SysRW Pipe::TwoWay);
 
 sub DEBUG () { 0 }
@@ -149,7 +155,7 @@ sub part2 {
     $poe_kernel->post("test_dispatcher" => "run_next");
     return;
   }
-  elsif ($^O eq "MSWin32") {
+  elsif ($^O eq "MSWin32" and not $ENV{POE_DANTIC}) {
     SKIP: {
       skip( "part2 doesn't work on windows", 13 );
     }

@@ -1,3 +1,166 @@
+======================================
+9999-99-99 99:99:99.999999Z (untagged)
+======================================
+
+  2009-10-07 01:50:42 (r2736) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    Set version for dev release.
+
+  2009-10-06 03:50:33 (r2735) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/k_signals_rerun.pm M;
+  poe/t/10_units/01_pod/01_pod.t M;
+  poe/t/90_regression/ferrari-server-unix.t M;
+  poe/t/90_regression/broeren-win32-nbio.t M;
+  poe/t/10_units/07_exceptions/03_not_handled.t M;
+  poe/t/10_units/05_filters/06_recordblock.t M;
+  poe/t/10_units/07_exceptions/02_turn_off.t M;
+  poe/t/90_regression/rt19908-merlyn-stop.t M;
+  poe/t/10_units/02_pipes/03_twoway.t M;
+  poe-test-loops/lib/POE/Test/Loops/sbk_signal_init.pm M;
+  poe/t/10_units/05_filters/08_stream.t M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_sf_ipv6.pm M;
+  poe/t/10_units/05_filters/07_reference.t M;
+  poe/t/10_units/03_base/10_wheel.t M;
+  poe/t/90_regression/bingos-followtail.t M;
+  poe-test-loops/lib/POE/Test/Loops/z_kogman_sig_order.pm M;
+  poe-test-loops/lib/POE/Test/Loops/comp_tcp.pm M;
+  poe/t/10_units/05_filters/99_filterchange.t M;
+  poe/t/10_units/06_queues/01_array.t M;
+  poe-test-loops/lib/POE/Test/Loops/k_selects.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_tail.pm M;
+  poe/t/10_units/03_base/16_explicit_loop.t M;
+  poe/t/10_units/05_filters/03_http.t M;
+  poe-test-loops/lib/POE/Test/Loops/z_merijn_sigchld_system.pm M;
+  poe-test-loops/lib/POE/Test/Loops/ses_nfa.pm M;
+  poe/t/10_units/03_base/14_kernel.t M;
+  poe/t/90_regression/neyuki_detach.t M;
+  poe/t/90_regression/averell-callback-ret.t M;
+  poe/t/90_regression/whelan-dieprop.t M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_run.pm M;
+  poe/t/10_units/03_base/13_assert_data.t M;
+  poe/t/10_units/05_filters/50_stackable.t M;
+  poe/t/10_units/03_base/08_resource.t M;
+  poe/t/90_regression/suzman_windows.t M;
+  poe-test-loops/lib/POE/Test/Loops/k_sig_child.pm M;
+  poe/t/10_units/01_pod/02_pod_coverage.t M;
+  poe-test-loops/lib/POE/Test/Loops/k_detach.pm M;
+  poe-test-loops/lib/POE/Test/Loops/all_errors.pm M;
+  poe/t/90_regression/kjeldahl-stop-start-polling.t M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_readline.pm M;
+  poe/t/90_regression/rt23181-sigchld-rc.t M;
+  poe-test-loops/lib/POE/Test/Loops/k_signals.pm M;
+  poe/t/10_units/03_base/06_loop.t M;
+  poe/t/20_resources/00_base/signals.pm M;
+  poe/t/10_units/03_base/12_assert_retval.t M;
+  poe/t/20_resources/00_base/sids.pm M;
+  poe/t/20_resources/00_base/sessions.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_accept.pm M;
+  poe/t/90_regression/cfedde-filter-httpd.t M;
+  poe/t/90_regression/rt47966-sigchld.t M;
+  poe/t/10_units/05_filters/01_block.t M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_curses.pm M;
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld.pm M;
+  poe/t/10_units/04_drivers/01_sysrw.t M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_sf_unix.pm M;
+  poe/t/10_units/07_exceptions/01_normal.t M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_sf_tcp.pm M;
+  poe/t/90_regression/rt1648-tied-stderr.t M;
+  poe/t/90_regression/agaran-filter-httpd.t M;
+  poe-test-loops/lib/POE/Test/Loops/comp_tcp_concurrent.pm M;
+  poe/t/90_regression/whjackson-followtail.t M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_readwrite.pm M;
+  poe/t/90_regression/kjeldahl-stop-start-sig-nopipe.t M;
+  poe/t/10_units/02_pipes/01_base.t M;
+  poe/t/10_units/03_base/11_assert_usage.t M;
+  poe/t/90_regression/steinert-passed-wheel.t M;
+  poe/t/90_regression/rt14444-arg1.t M;
+  poe-test-loops/lib/POE/Test/Loops/connect_errors.pm M;
+  poe/t/10_units/03_base/05_filter.t M;
+  poe/t/10_units/05_filters/04_line.t M;
+  poe/t/10_units/03_base/07_queue.t M;
+  poe-test-loops/lib/POE/Test/Loops/k_alarms.pm M;
+  poe/t/20_resources/00_base/filehandles.pm M;
+  poe/t/10_units/03_base/04_driver.t M;
+  poe/t/10_units/05_filters/02_grep.t M;
+  poe/t/90_regression/ton-stop-corruption.t M;
+  poe-test-loops/lib/POE/Test/Loops/ses_session.pm M;
+  poe/t/10_units/03_base/18_nfa_usage.t M;
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld_stop.pm M;
+  poe-test-loops/lib/POE/Test/Loops/k_run_returns.pm M;
+  poe/t/10_units/03_base/03_component.t M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_sf_udp.pm M;
+  poe/t/10_units/02_pipes/02_oneway.t M;
+  poe/t/20_resources/00_base/extrefs_gc.pm M; poe/t/00_info.t M;
+  poe/t/10_units/03_base/17_explicit_loop_fail.t M;
+  poe-test-loops/lib/POE/Test/Loops/z_leolo_wheel_run.pm M;
+  poe/t/90_regression/kjeldahl-stop-start-sig-pipe.t M;
+  poe/t/20_resources/00_base/caller_state.pm M;
+  poe/t/10_units/05_filters/05_map.t M;
+  poe/t/10_units/03_base/09_resources.t M;
+  poe-test-loops/lib/POE/Test/Loops/z_steinert_signal_integrity.pm M;
+  poe/t/90_regression/somni-poco-server-tcp.t M
+
+    Make the tests generally ASSERT_DEFAULT clean. POE_TRACE_FILENAME hid
+    a multitude of sins in the test output file. Update the vim options
+    lines while I'm in there. 
+
+  2009-10-06 03:39:18 (r2733) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/k_aliases.pm M;
+  poe/t/10_units/03_base/15_kernel_internal.t M;
+  poe/t/10_units/03_base/01_poe.t M
+
+    Redirect STDERR while testing some errors. ASSERT_DEFAULT is on and
+    making noise when things are called wrong, even when we do it on
+    purpose. 
+
+  2009-10-05 05:32:30 (r2727) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/k_signals_rerun.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_run.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_curses.pm M;
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld.pm M;
+  poe-test-loops/lib/POE/Test/Loops/ses_session.pm M;
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld_stop.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_sf_unix.pm M;
+  poe-test-loops/lib/POE/Test/Loops/k_sig_child.pm M;
+  poe-test-loops/lib/POE/Test/Loops/all_errors.pm M;
+  poe/t/90_regression/kjeldahl-stop-start-polling.t M;
+  poe-test-loops/lib/POE/Test/Loops/comp_tcp_concurrent.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_readline.pm M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_readwrite.pm M;
+  poe-test-loops/lib/POE/Test/Loops/k_signals.pm M;
+  poe-test-loops/lib/POE/Test/Loops/z_leolo_wheel_run.pm M;
+  poe/t/90_regression/kjeldahl-stop-start-sig-nopipe.t M;
+  poe-test-loops/lib/POE/Test/Loops/wheel_tail.pm M;
+  poe/t/90_regression/kjeldahl-stop-start-sig-pipe.t M
+
+    Add an option to enable all the broken MSWin32 tests.
+    
+    Set POE_DANTIC=1 before running "make test" to watch the pretty
+    fireworks. Oooh! Ahhhhhh! 
+
+  2009-10-02 03:47:17 (r2707) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/wheel_sf_ipv6.pm M
+
+    [rt.cpan.org 48715] Apply Craig's patch to skip the IPv6 tests if
+    IPv6 isn't actually enabled. The port autodetect code to didn't
+    handle failure due to IPv6 unavailability. 
+
+  2009-09-29 15:13:53 (r2703) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld.pm M;
+  poe-test-loops/lib/POE/Test/Loops/ses_session.pm M;
+  poe-test-loops/lib/POE/Test/Loops/z_rt39872_sigchld_stop.pm M
+
+    !!! Adjust tests for mark-and-sweep session GC changes.
+    
+    Some of the tests are sensitive to session GC timing. 
+
+  2009-09-16 15:11:30 (r2691) by rcaputo
+  poe-test-loops/MANIFEST M;
+  poe-test-loops/lib/POE/Test/Loops/k_run_returns.pm A
+
+    Test that POE::Kernel->run() without sessions returns right away. 
+
 =====================================
 2009-09-07T19:22:59.577723Z ptl-1_022
 =====================================

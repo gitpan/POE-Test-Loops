@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: wheel_sf_ipv6.pm 2672 2009-09-05 17:56:52Z rcaputo $
+# vim: ts=2 sw=2 expandtab
 
 # Exercises Client and Server TCP components, which exercise
 # SocketFactory in AF_INET6 mode.
@@ -41,8 +41,11 @@ BEGIN {
 }
 
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
-sub POE::Kernel::TRACE_DEFAULT  () { 1 }
-sub POE::Kernel::TRACE_FILENAME () { "./test-output.err" }
+
+BEGIN {
+  package POE::Kernel;
+  use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
+}
 
 use POE qw( Component::Client::TCP Component::Server::TCP );
 
@@ -69,9 +72,17 @@ POE::Component::Server::TCP->new(
   Error              => \&server_got_error,
   ClientError        => sub { }, # Hush a warning.
   Started            => sub {
-    $tcp_server_port = (
-      Socket6::unpack_sockaddr_in6($_[HEAP]->{listener}->getsockname())
-    )[0];
+    eval {
+      my $socket_name = $_[HEAP]{listener}->getsockname();
+      $tcp_server_port = (Socket6::unpack_sockaddr_in6($socket_name))[0];
+    };
+    if (!$tcp_server_port || $@) {
+      $tcp_server_port = undef;
+      SKIP: {
+        my $errstr = @$ || 'server port undefined';
+        skip "AF_INET6 probably not supported or configured ($errstr)", 2;
+      }
+    }
   },
 );
 
@@ -111,17 +122,19 @@ sub server_got_error {
 ###############################################################################
 # Start the TCP client.
 
-POE::Component::Client::TCP->new(
-  RemoteAddress => '::1',
-  RemotePort    => $tcp_server_port,
-  Domain        => Socket6::AF_INET6,
-  BindAddress   => '::1',
-  Connected     => \&client_got_connect,
-  ServerInput   => \&client_got_input,
-  ServerFlushed => \&client_got_flush,
-  Disconnected  => \&client_got_disconnect,
-  ConnectError  => \&client_got_connect_error,
-);
+if ($tcp_server_port) {
+  POE::Component::Client::TCP->new(
+    RemoteAddress => '::1',
+    RemotePort    => $tcp_server_port,
+    Domain        => Socket6::AF_INET6,
+    BindAddress   => '::1',
+    Connected     => \&client_got_connect,
+    ServerInput   => \&client_got_input,
+    ServerFlushed => \&client_got_flush,
+    Disconnected  => \&client_got_disconnect,
+    ConnectError  => \&client_got_connect_error,
+  );
+}
 
 sub client_got_connect {
   my $heap = $_[HEAP];

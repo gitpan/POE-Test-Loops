@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: wheel_sf_unix.pm 2209 2007-08-11 09:14:58Z rcaputo $
+# vim: ts=2 sw=2 expandtab
 
 # Exercises the wheels commonly used with UNIX domain sockets.
 
@@ -7,8 +7,11 @@ use strict;
 use lib qw(./mylib ../mylib);
 
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
-sub POE::Kernel::TRACE_DEFAULT  () { 1 }
-sub POE::Kernel::TRACE_FILENAME () { "./test-output.err" }
+
+BEGIN {
+  package POE::Kernel;
+  use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
+}
 
 use Socket;
 
@@ -20,10 +23,10 @@ BEGIN {
   unless (-f 'run_network_tests') {
     $error = "Network access (and permission) required to run this test";
   }
-  elsif ($^O eq "MSWin32" or $^O eq "MacOS") {
+  elsif (($^O eq "MSWin32" or $^O eq "MacOS") and not $ENV{POE_DANTIC}) {
     $error = "$^O does not support UNIX sockets";
   }
-  elsif ($^O eq "cygwin") {
+  elsif ($^O eq "cygwin" and not $ENV{POE_DANTIC}) {
     $error = "UNIX sockets on $^O always block";
   }
 

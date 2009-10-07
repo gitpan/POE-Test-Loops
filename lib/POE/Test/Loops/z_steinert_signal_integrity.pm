@@ -1,6 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: z_steinert_signal_integrity.pm 2580 2009-07-20 06:19:54Z rcaputo $
-# vim: filetype=perl
+# vim: ts=2 sw=2 expandtab
 
 # Jonathan Steinert produced a patch to fix POE::Wheel destruction
 # timing, and possibly other things, when they're passed as arguments
@@ -10,9 +9,12 @@
 
 use strict;
 
-sub POE::Kernel::TRACE_DEFAULT  () { 1 }
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
-sub POE::Kernel::TRACE_FILENAME () { "./test-output.err" }
+
+BEGIN {
+  package POE::Kernel;
+  use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
+}
 
 use POE;
 use POE::Wheel::ReadWrite;
@@ -28,8 +30,11 @@ sub start_session {
     inline_states => {
       _start     => \&setup,
       got_signal => \&handle_signal,
-      _stop      => sub { },
       timed_out  => \&timed_out,
+      # To pacify assertions.
+      _stop      => sub { },
+      _parent    => sub { },
+      _child     => sub { },
     }
   );
 }

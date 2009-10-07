@@ -1,4 +1,4 @@
-# $Id: MANIFEST 2623 2009-08-08 04:56:28Z rcaputo $
+# $Id: MANIFEST 2691 2009-09-16 15:11:30Z rcaputo $
 CHANGES
 MANIFEST
 Makefile.PL
@@ -13,6 +13,7 @@ lib/POE/Test/Loops/connect_errors.pm
 lib/POE/Test/Loops/k_alarms.pm
 lib/POE/Test/Loops/k_aliases.pm
 lib/POE/Test/Loops/k_detach.pm
+lib/POE/Test/Loops/k_run_returns.pm
 lib/POE/Test/Loops/k_selects.pm
 lib/POE/Test/Loops/k_sig_child.pm
 lib/POE/Test/Loops/k_signals.pm

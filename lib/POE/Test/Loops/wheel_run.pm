@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: wheel_run.pm 2671 2009-09-04 07:49:18Z rcaputo $
+# vim: ts=2 sw=2 expandtab
 
 use strict;
 use lib qw(./mylib ../mylib);
@@ -23,13 +23,13 @@ BEGIN {
     if ($@) {
       $error = "Win32::Console is required on $^O - try ActivePerl";
     }
-    elsif (exists $INC{"Tk.pm"}) {
+    elsif (exists $INC{"Tk.pm"} and not $ENV{POE_DANTIC}) {
       $error = "$^O with Tk seems to hang on this test";
     }
-    elsif (exists $INC{"Event.pm"}) {
+    elsif (exists $INC{"Event.pm"} and not $ENV{POE_DANTIC}) {
       $error = "$^O\'s fork() emulation breaks Event";
     }
-    else {
+    elsif (not $ENV{POE_DANTIC}) {
       $error = "Signal handling on $^O is too fragile - Perl crashes";
     }
 
@@ -50,8 +50,11 @@ BEGIN {
 sub DEBUG () { 0 }
 
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
-sub POE::Kernel::TRACE_DEFAULT  () { 1 }
-sub POE::Kernel::TRACE_FILENAME () { "./test-output.err" }
+
+BEGIN {
+  package POE::Kernel;
+  use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
+}
 
 use POE qw(Wheel::Run Filter::Line);
 
@@ -151,6 +154,7 @@ my $shutdown_program = sub {
           $_[KERNEL]->delay(check_timeout => undef);
           $_[KERNEL]->alias_remove("timeout");
         },
+        _stop => sub { }, # Pacify assertions.
       },
     );
     return $sess->ID;
@@ -238,9 +242,6 @@ sub main_start {
 
   $heap->{label} = $label;
 
-  # Handle SIGCHLD
-  $kernel->sig(CHLD => "sigchld");
-
   # Sometimes use a filter without get_one support
   my $filter_class = "POE::Filter::Line";
   if ($main_counter++ % 2) {
@@ -274,9 +275,11 @@ sub main_start {
     CloseEvent  => 'close',
   );
 
+  $_[KERNEL]->sig_child($heap->{wheel}->PID, "sigchld");
+
   # start the test statemachine
   $heap->{expected} = [@$expected];
-  &main_perform_state;
+  &main_perform_state; # Deliberately passing @_ through.
 
   $heap->{flushes_expected} = scalar(
     grep { (!ref $_->[0]) and defined($_->[1]) } @$expected
@@ -446,6 +449,7 @@ sub create_constructor_session {
 
         timeout_poke();
       },
+      _stop => sub { }, # Pacify assertions.
     },
   );
 

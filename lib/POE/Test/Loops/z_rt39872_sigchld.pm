@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+# vim: ts=2 sw=2 expandtab
 
 use strict;
 use warnings;
@@ -7,12 +8,17 @@ sub DEBUG () { 0 }
 sub POE::Kernel::USE_SIGCHLD () { 1 }
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 
+BEGIN {
+  package POE::Kernel;
+  use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
+}
+
 use POE;
 use Test::More;
 use POE::Wheel::Run;
 use POSIX qw( SIGINT );
 
-if ($^O eq "MSWin32") {
+if ($^O eq "MSWin32" and not $ENV{POE_DANTIC}) {
 	plan skip_all => "Perl crashes on $^O";
 	exit 0;
 }

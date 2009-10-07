@@ -1,16 +1,19 @@
 #!/usr/bin/perl -w
-# $Id: wheel_tail.pm 2672 2009-09-05 17:56:52Z rcaputo $
+# vim: ts=2 sw=2 expandtab
 
 # Exercises Wheel::FollowTail, Wheel::ReadWrite, and Filter::Block.
-# -><- Needs tests for Seek and SeekBack.
+# TODO - Needs tests for Seek and SeekBack.
 
 use strict;
 use lib qw(./mylib ../mylib);
 use Socket;
 
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
-sub POE::Kernel::TRACE_DEFAULT  () { 1 }
-sub POE::Kernel::TRACE_FILENAME () { "./test-output.err" }
+
+BEGIN {
+  package POE::Kernel;
+  use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
+}
 
 use Test::More;
 
@@ -18,7 +21,7 @@ unless (-f "run_network_tests") {
   plan skip_all => "Network access (and permission) required to run this test";
 }
 
-if ($^O eq "cygwin") {
+if ($^O eq "cygwin" and not $ENV{POE_DANTIC}) {
   plan skip_all => "Cygwin file open/locking semantics thwart this test.";
 }
 

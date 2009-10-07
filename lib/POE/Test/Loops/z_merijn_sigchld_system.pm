@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: z_merijn_sigchld_system.pm 2580 2009-07-20 06:19:54Z rcaputo $
+# $Id: z_merijn_sigchld_system.pm 2735 2009-10-06 03:50:33Z rcaputo $
 # vim: filetype=perl
 
 
@@ -7,9 +7,12 @@
 
 use strict;
 
-sub POE::Kernel::TRACE_DEFAULT  () { 1 }
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
-sub POE::Kernel::TRACE_FILENAME () { "./test-output.err" }
+
+BEGIN {
+  package POE::Kernel;
+  use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
+}
 
 use POE;
 
@@ -33,8 +36,8 @@ SKIP: {
   POE::Session->create(
     inline_states => {
       _start => sub {
-				my $sig_chld = $SIG{CHLD};
-				$sig_chld = "(undef)" unless defined $sig_chld;
+        my $sig_chld = $SIG{CHLD};
+        $sig_chld = "(undef)" unless defined $sig_chld;
 
         is(
           system( $command ), 0,
@@ -60,6 +63,7 @@ SKIP: {
         diag( "Caught child" );
         $caught_child++;
       },
+      _stop => sub { }, # Pacify assertions.
     }
   );
 

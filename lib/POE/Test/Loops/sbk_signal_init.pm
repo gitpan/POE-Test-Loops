@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: sbk_signal_init.pm 2599 2009-07-25 17:35:34Z rcaputo $
+# vim: ts=2 sw=2 expandtab
 
 # Tests whether POE::Kernel affects signal handlers at initialization
 # time.  Based on test code provided by Stuart Kendrick, in

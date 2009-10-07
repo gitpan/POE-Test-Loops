@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: ses_nfa.pm 2497 2009-03-08 00:33:21Z rcaputo $
+# vim: ts=2 sw=2 expandtab
 
 # Tests NFA sessions.
 
@@ -7,8 +7,11 @@ use strict;
 use lib qw(./mylib ../mylib);
 
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
-sub POE::Kernel::TRACE_DEFAULT  () { 1 }
-sub POE::Kernel::TRACE_FILENAME () { "./test-output.err" }
+
+BEGIN {
+  package POE::Kernel;
+  use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
+}
 
 use Test::More;
 

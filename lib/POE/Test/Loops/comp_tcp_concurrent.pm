@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: comp_tcp_concurrent.pm 2299 2008-03-24 05:11:33Z rcaputo $
+# vim: ts=2 sw=2 expandtab
 
 # Exercise Server::TCP and later, when it's available, Client::TCP.
 
@@ -11,7 +11,7 @@ BEGIN {
     print "1..0 # Skip Network access (and permission) required to run this test\n";
     CORE::exit();
   }
-  if ($^O eq "MSWin32") {
+  if ($^O eq "MSWin32" and not $ENV{POE_DANTIC}) {
     print "1..0 # Skip Windows sockets aren't as concurrent as those on Unix\n";
     CORE::exit();
   }
@@ -26,9 +26,7 @@ diag( "You might see a 'disconnect' error during this test." );
 diag( "It may be ignored." );
 
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
-# sub POE::Kernel::TRACE_EVENTS  () { 1 }
-# sub POE::Kernel::TRACE_FILES  () { 1 }
-# sub POE::Kernel::TRACE_FILENAME () { "./test-output.err" }
+sub POE::Kernel::TRACE_DEFAULT  () { 0 }
 
 use POE qw( Component::Server::TCP Wheel::ReadWrite Component::Client::TCP );
 

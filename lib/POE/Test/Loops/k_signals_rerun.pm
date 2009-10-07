@@ -1,5 +1,4 @@
-# $Id: k_signals_rerun.pm 2665 2009-09-03 16:08:06Z rcaputo $
-# vim: filetype=perl
+# vim: ts=2 sw=2 expandtab
 
 # Yuval Kogman's test case for edge issues with rethrowing unhandled
 # die() exceptions and re-calling run() after it's returned due to
@@ -10,7 +9,7 @@ use strict;
 
 use Test::More;
 
-if ($^O eq "MSWin32") {
+if ($^O eq "MSWin32" and not $ENV{POE_DANTIC}) {
   plan skip_all => "Perl on $^O is too fragile for this test - it crashes";
   CORE::exit(0);
 
@@ -18,10 +17,10 @@ if ($^O eq "MSWin32") {
   if ($@) {
     plan skip_all => "Win32::Console is required on $^O - try ActivePerl";
   }
-  if (exists $INC{'Tk.pm'}) {
+  if (exists $INC{'Tk.pm'} and not $ENV{POE_DANTIC}) {
     plan skip_all => "Perl crashes in this test with Tk on $^O";
   }
-  if (exists $INC{'Event.pm'}) {
+  if (exists $INC{'Event.pm'} and not $ENV{POE_DANTIC}) {
     plan skip_all => "Perl crashes in this test with Event on $^O";
   }
 }

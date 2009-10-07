@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: k_sig_child.pm 2209 2007-08-11 09:14:58Z rcaputo $
+# vim: ts=2 sw=2 expandtab
 
 # Tests various signals using POE's stock signal handlers.  These are
 # plain Perl signals, so mileage may vary.
@@ -10,8 +10,11 @@ use lib qw(./mylib ../mylib);
 use Test::More;
 
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
-sub POE::Kernel::TRACE_DEFAULT  () { 1 }
-sub POE::Kernel::TRACE_FILENAME () { "./test-output.err" }
+
+BEGIN {
+  package POE::Kernel;
+  use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
+}
 
 # This is the number of processes to fork.  Increase this number if
 # your system can handle the resource use.  Also try increasing it if
@@ -27,10 +30,10 @@ BEGIN {
   # this test to FAIL instead of skip.
 
   my $error;
-  if ($^O eq "MSWin32") {
+  if ($^O eq "MSWin32" and not $ENV{POE_DANTIC}) {
     $error = "$^O does not support signals";
   }
-  elsif ($^O eq "MacOS") {
+  elsif ($^O eq "MacOS" and not $ENV{POE_DANTIC}) {
     $error = "$^O does not support fork";
   }
 
