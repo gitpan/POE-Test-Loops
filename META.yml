@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               POE-Test-Loops
-version:            1.022_001
+version:            1.030
 abstract:           POE::Loop test suite
 author:
     - Rocco Caputo <rcaputo@cpan.org>
