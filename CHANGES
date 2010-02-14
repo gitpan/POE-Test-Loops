@@ -1,4 +1,29 @@
 =====================================
+2010-02-14T21:38:46.364786Z ptl-1_032
+=====================================
+
+  2010-02-14 02:44:47 (r2797) by rcaputo
+  poe-test-loops/MANIFEST M;
+  poe-test-loops/lib/POE/Test/Loops/z_rt54319_bazerka_followtail.pm A;
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    Add a test case from rt.cpan.org #54319. Verify Po::Wh::FollowTail
+    actually tails files. Thanks to Bazerka on irc.perl.org for
+    submitting the basis of this test case. 
+
+  2010-01-02 02:57:35 (r2773) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/z_leolo_wheel_run.pm M;
+  poe-test-loops/lib/POE/Test/Loops/ses_nfa.pm M;
+  poe-test-loops/lib/POE/Test/Loops/z_steinert_signal_integrity.pm M
+
+    Try to resolve some CPAN indexer issues.
+    
+    Eliminate a $VERSION string being used to test a version (not define
+    one). Eliminate a package statement used to define a constant (not a
+    class). Change a test package name to avoid indexer conflict with
+    another distribution. 
+
+=====================================
 2010-01-01T08:57:09.665997Z ptl-1_031
 =====================================
 
@@ -454,20 +479,6 @@
   poe-test-loops/lib/POE/Test/Loops/ses_nfa.pm M
 
     Remove some warnings. 
-
-=====================================
-2009-01-30T07:11:18.435237Z ptl-1_003
-=====================================
-
-  2009-01-30 07:04:44 (r2411) by rcaputo
-  poe-test-loops/lib/POE/Test/Loops/wheel_run.pm M;
-  poe-test-loops/lib/POE/Test/Loops.pm M;
-  poe-test-loops/bin/poe-gen-tests M
-
-    Apply Tony Cook's suggestion to use environment variables to skip
-    problematic tests. Event loops which have these problems can bypass
-    tests which are known to fail. Also fixed a documentation omission
-    based on his comments in IRC. 
 
 ==============
 End of Excerpt
