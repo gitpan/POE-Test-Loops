@@ -1,4 +1,30 @@
 =====================================
+2010-02-15T06:28:11.163679Z ptl-1_033
+=====================================
+
+  2010-02-15 06:27:00 (r2812) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    Bump for yet another release.
+
+  2010-02-15 01:05:37 (r2811) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/z_rt54319_bazerka_followtail.pm M
+
+    Make Bazerka's regression test a little more forgiving about elapsed
+    run time. 
+
+  2010-02-14 23:55:56 (r2810) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/z_leolo_wheel_run.pm M
+
+    Skip pty tests if IO::Pty isn't available. Also some style fixes. 
+
+  2010-02-14 23:55:18 (r2809) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops/z_rt54319_bazerka_followtail.pm M
+
+    Make the test a little more forgiving for slower systems, such as
+    virtualized Windows systems and other forms of emulation. 
+
+=====================================
 2010-02-14T21:38:46.364786Z ptl-1_032
 =====================================
 
