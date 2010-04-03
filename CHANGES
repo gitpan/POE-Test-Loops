@@ -1,4 +1,14 @@
 =====================================
+2010-04-03T20:02:56.616386Z ptl-1_035
+=====================================
+
+  2010-04-03 20:01:00 (r2864) by rcaputo
+  poe-test-loops/lib/POE/Test/Loops.pm M
+
+    Bump revision for a new release. No significant changes, other than
+    to build a new dist with the latest EUMM. 
+
+=====================================
 2010-04-03T18:15:36.151833Z ptl-1_034
 =====================================
 
