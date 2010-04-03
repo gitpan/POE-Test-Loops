@@ -5,6 +5,7 @@ README
 bin/poe-gen-tests
 lib/POE/Test/DondeEstan.pm
 lib/POE/Test/Loops.pm
+lib/POE/Test/Loops/00_info.pm
 lib/POE/Test/Loops/all_errors.pm
 lib/POE/Test/Loops/comp_tcp.pm
 lib/POE/Test/Loops/comp_tcp_concurrent.pm
@@ -37,5 +38,6 @@ lib/POE/Test/Loops/z_rt39872_sigchld.pm
 lib/POE/Test/Loops/z_rt39872_sigchld_stop.pm
 lib/POE/Test/Loops/z_rt54319_bazerka_followtail.pm
 lib/POE/Test/Loops/z_steinert_signal_integrity.pm
+lib/POE/Test/Loops/z_rt53302_fh_watchers.pm
 t/01_no_tests.t
 META.yml                                 Module meta-data (added by MakeMaker)

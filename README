@@ -66,10 +66,14 @@ UUSSAAGGEE
          poe−gen−tests −−dirbase t/loops −−loop Event::Lib
          poe−gen−tests −−dirbase t/loops −−loop POE::Loop::Event_Lib
 
-       poe‐gen‐tests looks for a "=for poe_tests" section within the POE::Loop
-       class being tested.  If defined, this section should include a single
-       function, _s_k_i_p___t_e_s_t_s_(_), that determines whether any given test should
-       be skipped.
+       poe‐gen‐tests looks for a "=for poe_tests" or "=begin poe_tests"
+       section within the POE::Loop class being tested.  If defined, this
+       section should include a single function, _s_k_i_p___t_e_s_t_s_(_), that determines
+       whether any given test should be skipped.
+
+       Please see perlpod for syntax for "=for" and "=begin".  Also see
+       PODDITIES for notable differences between POE::Test::Loop’s POD support
+       and the standard.
 
        _s_k_i_p___t_e_s_t_s_(_) is called with one parameter, the base name of the test
        about to be executed.  It returns false if the test should run, or a
@@ -86,40 +90,46 @@ UUSSAAGGEE
 
        EExxaammppllee ppooee__tteessttss DDiirreeccttiivveess
 
-       From POE::Loop::Event
+       POE::Loop::Event checks whether the Event module exists and can be
+       loaded, then whether specific tests can run under specific operating
+       systems.
 
          =for poe_tests
-
          sub skip_tests {
-           my $test_name = shift;
-           if ($test_name eq "k_signals_rerun" and $^O eq "MSWin32") {
-             return "This test crashes Perl when run with Event on $^O";
-           }
            return "Event tests require the Event module" if (
              do { eval "use Event"; $@ }
            );
+           my $test_name = shift;
+           if ($test_name eq "k_signals_rerun" and $^O eq "MSWin32") {
+             return "This test crashes Perl when run with Tk on $^O";
+           }
+           if ($test_name eq "wheel_readline" and $^O eq "darwin") {
+             return "Event skips two of its own tests for the same reason";
+           }
          }
 
-         =cut
-
-       From POE::Loop::Gtk
+       POE::Loop::Gtk checks whether DISPLAY is set, which implies that X is
+       running.  It then checks whether Gtk is available, loadable, and safely
+       initializable before skipping specific tests.
 
          =for poe_tests
-
          sub skip_tests {
+           my $test_name = shift;
            return "Gtk needs a DISPLAY (set one today, okay?)" unless (
              defined $ENV{DISPLAY} and length $ENV{DISPLAY}
            );
            return "Gtk tests require the Gtk module" if do { eval "use Gtk"; $@ };
+           return "Gtk init failed.  Is DISPLAY valid?" unless defined Gtk−>init_check;
+           if ($test_name eq "z_rt39872_sigchld_stop") {
+             return "Gdk crashes";
+           }
            return;
          }
 
-         =cut
-
-       From POE::Loop::IO_Poll
+       POE::Loop::IO_Poll checks for system compatibility before verifying
+       that IO::Poll is available and loadable.
 
          =for poe_tests
-
          sub skip_tests {
            return "IO::Poll is not 100% compatible with $^O" if $^O eq "MSWin32";
            return "IO::Poll tests require the IO::Poll module" if (
@@ -127,20 +137,16 @@ UUSSAAGGEE
            );
          }
 
-         =cut
-
-       From POE::Loop::Select
+       POE::Loop::Select has no specific requirements.
 
          =for poe_tests
-
          sub skip_tests { return }
 
-         =cut
-
-       From POE::Loop::Tk
+       POE::Loop::Tk needs an X display (except on Windows).  Tk is not safe
+       for _f_o_r_k_(_), so skip tests that require forking.  And finally, check
+       whether the Tk module is available, loadable, and runnable.
 
          =for poe_tests
-
          sub skip_tests {
            return "Tk needs a DISPLAY (set one today, okay?)" unless (
              (defined $ENV{DISPLAY} and length $ENV{DISPLAY}) or $^O eq "MSWin32"
@@ -150,10 +156,14 @@ UUSSAAGGEE
              return "This test crashes Perl when run with Tk on $^O";
            }
            return "Tk tests require the Tk module" if do { eval "use Tk"; $@ };
+           my $m = eval { Tk::MainWindow−>new() };
+           if ($@) {
+             my $why = $@;
+             $why =~ s/ at .*//;
+             return "Tk couldn't be initialized: $why";
+           }
            return;
          }
-
-         =cut
 
 IINNSSTTAALLLL SSCCRRIIPPTT IINNTTEEGGRRAATTIIOONN
        The POE::Loop tests started out as part of the POE distribution.  All
@@ -279,8 +289,44 @@ SSkkiippppiinngg OOtthheerr TTeessttss
        true value.  It will cause the tests to skip this troublesome
        combination.
 
+       PPOODDDDIITTIIEESS
+
+       Previous versions of POE::Test::Loops documented "=for poe_tests"
+       sections terminated by =cut and containing blank lines.  This is
+       incorrect POD syntax, and it’s the reason the _s_k_i_p___t_e_s_t_s_(_) functions
+       showed up in perldoc and on search.cpan.org.  The following syntax is
+       wrong and should not have been used.  I’m so sorry.
+
+         =for poe_tests
+
+         sub skip_tests { ... }
+
+         =cut
+
+       The proper syntax is to terminate "=for poe_tests" with a blank line:
+
+         =for poe_tests
+         sub skip_tests {
+           ...
+         }
+
+       Multi‐line tests containing blank lines can be specified using POD’s
+       "=begin poe_tests" terminated by "=end poe_tests".
+
+         =begin poe_tests
+
+         sub skip_tests {
+           ...
+         }
+
+         =end poe_tests
+
+       All three syntaxes above are supported as of POE::Test::Loops version
+       1.034.  The incorrect =for syntax is deprecated and will be removed in
+       some future release.
+
 SSEEEE AALLSSOO
-       POE::Test::Loops and POE::Loop.
+       POE::Test::Loops, POE::Loop, perlpod.
 
        BBUUGG TTRRAACCKKEERR
 
@@ -307,4 +353,4 @@ AAUUTTHHOORR && CCOOPPYYRRIIGGHHTT
 
 
 
-perl v5.10.0                      2009‐07‐27                  POE‐GEN‐TESTS(1)
+perl v5.10.0                      2010‐03‐22                  POE‐GEN‐TESTS(1)
