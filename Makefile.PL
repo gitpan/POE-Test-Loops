@@ -1,5 +1,3 @@
-# $Id: Makefile.PL 2605 2009-07-27 05:10:57Z rcaputo $
-
 use ExtUtils::MakeMaker;
 
 # Touch auto-generated files so we don't see warnings.

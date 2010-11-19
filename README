@@ -88,8 +88,7 @@ UUSSAAGGEE
        _s_k_i_p___t_e_s_t_s_(_) should load any modules required by the event loop.  See
        most of the examples below.
 
-       EExxaammppllee ppooee__tteessttss DDiirreeccttiivveess
-
+   EExxaammppllee ppooee__tteessttss DDiirreeccttiivveess
        POE::Loop::Event checks whether the Event module exists and can be
        loaded, then whether specific tests can run under specific operating
        systems.
@@ -171,8 +170,7 @@ IINNSSTTAALLLL SSCCRRIIPPTT IINNTTEEGGRRAATTIIOONN
        against ExtUtils::MakeMaker because that’s what POE uses.  Please
        adjust these recipes according to your taste and preference.
 
-       CCaalllliinngg tthhee TTeesstt GGeenneerraattoorr
-
+   CCaalllliinngg tthhee TTeesstt GGeenneerraattoorr
        Tests need to be generated prior to the user or CPAN shell running
        "make test".  A tidy way to do this might be to create a new Makefile
        target and include that as a dependency for "make test".  POE takes a
@@ -282,15 +280,13 @@ SSkkiippppiinngg OOtthheerr TTeessttss
        capabilities.  Distributions and event loops may set these variables to
        signal which tests are okay to run.
 
-       PPOOEE__LLOOOOPP__UUSSEESS__PPOOLLLL
-
+   PPOOEE__LLOOOOPP__UUSSEESS__PPOOLLLL
        Some platforms do not support _p_o_l_l_(_) on certain kinds of filehandles.
        Event loops that use _p_o_l_l_(_) should set this environment variable to a
        true value.  It will cause the tests to skip this troublesome
        combination.
 
-       PPOODDDDIITTIIEESS
-
+   PPOODDDDIITTIIEESS
        Previous versions of POE::Test::Loops documented "=for poe_tests"
        sections terminated by =cut and containing blank lines.  This is
        incorrect POD syntax, and it’s the reason the _s_k_i_p___t_e_s_t_s_(_) functions
@@ -328,16 +324,13 @@ SSkkiippppiinngg OOtthheerr TTeessttss
 SSEEEE AALLSSOO
        POE::Test::Loops, POE::Loop, perlpod.
 
-       BBUUGG TTRRAACCKKEERR
-
+   BBUUGG TTRRAACCKKEERR
        https://rt.cpan.org/Dist/Display.html?Status=Active&Queue=POE−Test−Loops
 
-       RREEPPOOSSIITTOORRYY
-
+   RREEPPOOSSIITTOORRYY
        https://poe.svn.sourceforge.net/svnroot/poe/trunk/poe−test−loops
 
-       OOTTHHEERR RREESSOOUURRCCEESS
-
+   OOTTHHEERR RREESSOOUURRCCEESS
        http://search.cpan.org/dist/POE−Test−Loops/
 
 AAUUTTHHOORR && CCOOPPYYRRIIGGHHTT
@@ -353,4 +346,4 @@ AAUUTTHHOORR && CCOOPPYYRRIIGGHHTT
 
 
 
-perl v5.10.0                      2010‐03‐22                  POE‐GEN‐TESTS(1)
+perl v5.10.0                      2010‐09‐04                  POE‐GEN‐TESTS(1)

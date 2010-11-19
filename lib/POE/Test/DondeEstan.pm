@@ -1,5 +1,3 @@
-# $Id: DondeEstan.pm 2741 2009-10-11 18:53:43Z rcaputo $
-
 package POE::Test::DondeEstan;
 
 use warnings;

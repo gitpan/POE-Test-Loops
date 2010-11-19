@@ -1,5 +1,4 @@
 #!/usr/bin/perl -w
-# $Id: z_merijn_sigchld_system.pm 2735 2009-10-06 03:50:33Z rcaputo $
 # vim: filetype=perl
 
 
