@@ -1,25 +1,25 @@
-POE‐GEN‐TESTS(1)      User Contributed Perl Documentation     POE‐GEN‐TESTS(1)
+POE-GEN-TESTS(1)      User Contributed Perl Documentation     POE-GEN-TESTS(1)
 
 
 
 NNAAMMEE
-       poe−gen−tests − generate standard POE tests for third−party modules
+       poe-gen-tests - generate standard POE tests for third-party modules
 
 SSYYNNOOPPSSIISS
-         poe−gen−tests −−dirbase t/loops \
-           −−loop Glib \
-           −−loop Kqueue \
-           −−loop Event::Lib \
-           −−loop POE::XS::Loop::Poll
+         poe-gen-tests --dirbase t/loops \
+           --loop Glib \
+           --loop Kqueue \
+           --loop Event::Lib \
+           --loop POE::XS::Loop::Poll
 
 DDEESSCCRRIIPPTTIIOONN
        This program and the accompanying POE::Test::Loop::* modules make up
-       POE’s tests for POE::Loop subclasses.  These tests are designed to run
+       POE's tests for POE::Loop subclasses.  These tests are designed to run
        identically regardless of the current event loop.  POE uses them to
        test the event loops it bundles:
 
          POE::Loop::Gtk
-         POE::Loop::IO_Poll (−−loop IO::Poll)
+         POE::Loop::IO_Poll (--loop IO::Poll)
          POE::Loop::Tk
          POE::Loop::Event
          POE::Loop::Select
@@ -28,10 +28,10 @@ DDEESSCCRRIIPPTTIIOONN
        to generate over 420 comprehensive tests for their own work.
 
 UUSSAAGGEE
-       poe‐gen‐tests creates test files for one or more event loops beneath
-       the directory specified in −−dirbase.  For example,
+       poe-gen-tests creates test files for one or more event loops beneath
+       the directory specified in --dirbase.  For example,
 
-         poe−gen−tests −−dirbase t/loops −−loop Select
+         poe-gen-tests --dirbase t/loops --loop Select
 
        generates the following test files:
 
@@ -60,25 +60,25 @@ UUSSAAGGEE
          t/loops/select/wheel_sf_unix.t
          t/loops/select/wheel_tail.t
 
-       The −−loop parameter is either a POE::Loop::... class name or the event
+       The --loop parameter is either a POE::Loop::... class name or the event
        loop class that will complete the POE::Loop::... package name.
 
-         poe−gen−tests −−dirbase t/loops −−loop Event::Lib
-         poe−gen−tests −−dirbase t/loops −−loop POE::Loop::Event_Lib
+         poe-gen-tests --dirbase t/loops --loop Event::Lib
+         poe-gen-tests --dirbase t/loops --loop POE::Loop::Event_Lib
 
-       poe‐gen‐tests looks for a "=for poe_tests" or "=begin poe_tests"
+       poe-gen-tests looks for a "=for poe_tests" or "=begin poe_tests"
        section within the POE::Loop class being tested.  If defined, this
        section should include a single function, _s_k_i_p___t_e_s_t_s_(_), that determines
        whether any given test should be skipped.
 
        Please see perlpod for syntax for "=for" and "=begin".  Also see
-       PODDITIES for notable differences between POE::Test::Loop’s POD support
+       PODDITIES for notable differences between POE::Test::Loop's POD support
        and the standard.
 
        _s_k_i_p___t_e_s_t_s_(_) is called with one parameter, the base name of the test
        about to be executed.  It returns false if the test should run, or a
        message that will be displayed to the user explaining why the test will
-       be skipped.  This message is passed directly to Test::More’s _p_l_a_n_(_)
+       be skipped.  This message is passed directly to Test::More's _p_l_a_n_(_)
        along with "skip_all".  The logic is essentially:
 
          if (my $why = skip_tests("k_signals_rerun")) {
@@ -88,7 +88,8 @@ UUSSAAGGEE
        _s_k_i_p___t_e_s_t_s_(_) should load any modules required by the event loop.  See
        most of the examples below.
 
-   EExxaammppllee ppooee__tteessttss DDiirreeccttiivveess
+       EExxaammppllee ppooee__tteessttss DDiirreeccttiivveess
+
        POE::Loop::Event checks whether the Event module exists and can be
        loaded, then whether specific tests can run under specific operating
        systems.
@@ -118,7 +119,7 @@ UUSSAAGGEE
              defined $ENV{DISPLAY} and length $ENV{DISPLAY}
            );
            return "Gtk tests require the Gtk module" if do { eval "use Gtk"; $@ };
-           return "Gtk init failed.  Is DISPLAY valid?" unless defined Gtk−>init_check;
+           return "Gtk init failed.  Is DISPLAY valid?" unless defined Gtk->init_check;
            if ($test_name eq "z_rt39872_sigchld_stop") {
              return "Gdk crashes";
            }
@@ -155,7 +156,7 @@ UUSSAAGGEE
              return "This test crashes Perl when run with Tk on $^O";
            }
            return "Tk tests require the Tk module" if do { eval "use Tk"; $@ };
-           my $m = eval { Tk::MainWindow−>new() };
+           my $m = eval { Tk::MainWindow->new() };
            if ($@) {
              my $why = $@;
              $why =~ s/ at .*//;
@@ -167,28 +168,29 @@ UUSSAAGGEE
 IINNSSTTAALLLL SSCCRRIIPPTT IINNTTEEGGRRAATTIIOONN
        The POE::Loop tests started out as part of the POE distribution.  All
        the recommendations and examples that follow are written and tested
-       against ExtUtils::MakeMaker because that’s what POE uses.  Please
+       against ExtUtils::MakeMaker because that's what POE uses.  Please
        adjust these recipes according to your taste and preference.
 
-   CCaalllliinngg tthhee TTeesstt GGeenneerraattoorr
+       CCaalllliinngg tthhee TTeesstt GGeenneerraattoorr
+
        Tests need to be generated prior to the user or CPAN shell running
        "make test".  A tidy way to do this might be to create a new Makefile
        target and include that as a dependency for "make test".  POE takes a
        simpler approach, calling the script from its Makefile.PL:
 
          system(
-           $^X, "poe−gen−tests", "−−dirbase", "t/30_loops",
-           "−−loop", "Event", "−−loop", "Gtk", "−−loop", "IO::Poll",
-           "−−loop", "Select", "−−loop", "Tk",
+           $^X, "poe-gen-tests", "--dirbase", "t/30_loops",
+           "--loop", "Event", "--loop", "Gtk", "--loop", "IO::Poll",
+           "--loop", "Select", "--loop", "Tk",
          ) and die $!;
 
-       The previous approach generates tests at install time, so it’s not
+       The previous approach generates tests at install time, so it's not
        necessary to include the generated files in the MANIFEST.  Test
-       directories should also be excluded from the MANIFEST.  poe‐gen‐tests
+       directories should also be excluded from the MANIFEST.  poe-gen-tests
        will create the necessary paths.
 
-       It’s also possible to generate the tests prior to "make dist".  The
-       distribution’s MANIFEST must include the generated files in this case.
+       It's also possible to generate the tests prior to "make dist".  The
+       distribution's MANIFEST must include the generated files in this case.
 
        Most people will not need to add the generated tests to their
        repositories.
@@ -204,9 +206,9 @@ RRuunnnniinngg tthhee TTeessttss
          }
 
 CCLLEEAANNIINNGG UUPP
-       Makefiles will not clean up files that aren’t present in the MANIFEST.
+       Makefiles will not clean up files that aren't present in the MANIFEST.
        This includes tests generated at install time.  If this bothers you,
-       you’ll need to add directives to include the generated tests in the
+       you'll need to add directives to include the generated tests in the
        "clean" and "distclean" targets.
 
          clean => {
@@ -214,7 +216,7 @@ CCLLEEAANNIINNGG UUPP
          }
 
        This assumes the "t/30_loops" directory contains only generated tests.
-       It’s recommended that generated and hand‐coded tests not coexist in the
+       It's recommended that generated and hand-coded tests not coexist in the
        same directory.
 
        It seems like a good idea to delete the deeper directories and files
@@ -224,29 +226,29 @@ SSkkiippppiinngg NNeettwwoorrkk TTeessttss
        Some generated tests require a network to be present and accessible.
        Those tests will be skipped unless the file "run_network_tests" is
        present in the main distribution directory.  You can include that file
-       in your distribution’s tarball, but it’s better create it at install
-       time after asking the user.  Here’s how POE does it.  Naturally you’re
+       in your distribution's tarball, but it's better create it at install
+       time after asking the user.  Here's how POE does it.  Naturally you're
        free to do it some other way.
 
          # Switch to default behavior if STDIN isn't a tty.
 
-         unless (−t STDIN) {
+         unless (-t STDIN) {
            warn(
              "\n",
              "=============================================\n\n",
-             "STDIN is not a terminal.  Assuming −−default.\n\n",
+             "STDIN is not a terminal.  Assuming --default.\n\n",
              "=============================================\n\n",
            );
-           push @ARGV, "−−default";
+           push @ARGV, "--default";
          }
 
-         # Remind the user she can use −−default.
+         # Remind the user she can use --default.
 
-         unless (grep /^−−default$/, @ARGV) {
+         unless (grep /^--default$/, @ARGV) {
            warn(
              "\n",
              "================================================\n\n",
-             "Prompts may be bypassed with the −−default flag.\n\n",
+             "Prompts may be bypassed with the --default flag.\n\n",
              "================================================\n\n",
            );
          }
@@ -260,7 +262,7 @@ SSkkiippppiinngg NNeettwwoorrkk TTeessttss
          );
 
          my $ret = "n";
-         if (grep /^−−default$/, @ARGV) {
+         if (grep /^--default$/, @ARGV) {
            print $prompt, " [$ret] $ret\n\n";
          }
          else {
@@ -276,22 +278,24 @@ SSkkiippppiinngg NNeettwwoorrkk TTeessttss
          print "\n";
 
 SSkkiippppiinngg OOtthheerr TTeessttss
-       POE’s loop tests will enable or disable tests based on the event loop’s
+       POE's loop tests will enable or disable tests based on the event loop's
        capabilities.  Distributions and event loops may set these variables to
        signal which tests are okay to run.
 
-   PPOOEE__LLOOOOPP__UUSSEESS__PPOOLLLL
+       PPOOEE__LLOOOOPP__UUSSEESS__PPOOLLLL
+
        Some platforms do not support _p_o_l_l_(_) on certain kinds of filehandles.
        Event loops that use _p_o_l_l_(_) should set this environment variable to a
        true value.  It will cause the tests to skip this troublesome
        combination.
 
-   PPOODDDDIITTIIEESS
+       PPOODDDDIITTIIEESS
+
        Previous versions of POE::Test::Loops documented "=for poe_tests"
        sections terminated by =cut and containing blank lines.  This is
-       incorrect POD syntax, and it’s the reason the _s_k_i_p___t_e_s_t_s_(_) functions
+       incorrect POD syntax, and it's the reason the _s_k_i_p___t_e_s_t_s_(_) functions
        showed up in perldoc and on search.cpan.org.  The following syntax is
-       wrong and should not have been used.  I’m so sorry.
+       wrong and should not have been used.  I'm so sorry.
 
          =for poe_tests
 
@@ -306,7 +310,7 @@ SSkkiippppiinngg OOtthheerr TTeessttss
            ...
          }
 
-       Multi‐line tests containing blank lines can be specified using POD’s
+       Multi-line tests containing blank lines can be specified using POD's
        "=begin poe_tests" terminated by "=end poe_tests".
 
          =begin poe_tests
@@ -324,20 +328,23 @@ SSkkiippppiinngg OOtthheerr TTeessttss
 SSEEEE AALLSSOO
        POE::Test::Loops, POE::Loop, perlpod.
 
-   BBUUGG TTRRAACCKKEERR
-       https://rt.cpan.org/Dist/Display.html?Status=Active&Queue=POE−Test−Loops
+       BBUUGG TTRRAACCKKEERR
 
-   RREEPPOOSSIITTOORRYY
-       https://poe.svn.sourceforge.net/svnroot/poe/trunk/poe−test−loops
+       https://rt.cpan.org/Dist/Display.html?Status=Active&Queue=POE-Test-Loops
 
-   OOTTHHEERR RREESSOOUURRCCEESS
-       http://search.cpan.org/dist/POE−Test−Loops/
+       RREEPPOOSSIITTOORRYY
+
+       https://poe.svn.sourceforge.net/svnroot/poe/trunk/poe-test-loops
+
+       OOTTHHEERR RREESSOOUURRCCEESS
+
+       http://search.cpan.org/dist/POE-Test-Loops/
 
 AAUUTTHHOORR && CCOOPPYYRRIIGGHHTT
        Rocco Caputo <rcaputo@cpan.org>.  Benjamin Smith <bsmith@cpan.org>.
        Countless other people.
 
-       These tests are Copyright 1998−2009 by Rocco Caputo, Benjamin Smith,
+       These tests are Copyright 1998-2009 by Rocco Caputo, Benjamin Smith,
        and countless contributors.  All rights are reserved.  These tests are
        free software; you may redistribute them and/or modify them under the
        same terms as Perl itself.
@@ -346,4 +353,4 @@ AAUUTTHHOORR && CCOOPPYYRRIIGGHHTT
 
 
 
-perl v5.10.0                      2010‐09‐04                  POE‐GEN‐TESTS(1)
+perl v5.10.0                      2010-09-04                  POE-GEN-TESTS(1)

@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               POE-Test-Loops
-version:            1.036
+version:            1.036_272
 abstract:           POE::Loop test suite
 author:
     - Rocco Caputo <rcaputo@cpan.org>
@@ -14,7 +14,7 @@ requires:
     Test::More:  0
 resources:
     license:     http://dev.perl.org/licenses/
-    repository:  https://poe.svn.sourceforge.net/svnroot/poe/trunk/poe-test-loops
+    repository:  https://github.com/rcaputo/poe-test-loops
 no_index:
     directory:
         - t

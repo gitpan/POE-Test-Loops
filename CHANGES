@@ -1,0 +1,200 @@
+==============================
+9999-99-99 99:99:99 +0000 HEAD
+==============================
+
+  commit 2ce59f530a40c4ba112119031ade310554d32e9c
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Thu Jan 27 20:27:48 2011 -0500
+  
+    Eliminate Socket6 use from the tests.
+
+  commit a5a3652cf445211a6b1e759fb5acebadeee3878e
+  Author: Perl Whore <whoreperl@gmail.com>
+  Date:   Thu Jan 27 18:00:24 2011 -0500
+  
+    Resolve a test failure on CentOS, which appears to be a race
+    condition in the test itself. Resolves rt.cpan.org #61727.
+
+  commit 77f807dda02bfb6d21a15ca60d84c737a226a4d8
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Fri Dec 3 23:43:40 2010 -0500
+  
+    Fix alarms tests to match POE's documentation.
+
+  commit f7e2481974b1ce1efcb62e7c0ad31bb69ec6fc1d
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Fri Dec 3 23:43:28 2010 -0500
+  
+    Convert metadata and changelogs to Git workflow. 
+
+================================
+2010-11-18 22:37:59 -0500 v1_036
+================================
+
+  commit bc3f702241916c37f833d4bb6ff2a60b716fcb6b
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Thu Nov 18 22:37:59 2010 -0500
+  
+    New revision for a new release.
+
+  commit 881ccb7c4a73550db6a27de9e438237a25665ecb
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Thu Nov 18 08:53:16 2010 -0500
+  
+    Fix POE::Wheel::ReadLine test issues on solaris and DragonFly BSD.
+
+    Force a known good TERM environment variable on solaris, rather than
+    whatever one might be set. Catch the case where POE::Wheel::ReadLine
+    fails to instantiate, and skip all tests.
+
+  commit 44bfa444898de17eb955ac63d822493861b91b6e
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Tue Sep 7 22:14:56 2010 -0400
+  
+    Remove cvs/svn keywords.
+
+  commit 5e1e5c185f5790f58da34287c8f44880e31fce79
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Tue Sep 7 22:01:35 2010 -0400
+  
+    Promote poe-test-loops contents to the top level. 
+
+================================
+2010-04-03 20:01:00 -0400 v1_035
+================================
+
+  commit b8f5385fc36b95f304a6a70f5511d060f51ce581
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Sat Apr 3 20:01:00 2010 -0400
+  
+    Bump revision for a new release. No significant changes, other than
+    to build a new dist with the latest EUMM. 
+
+================================
+2010-04-03 17:46:46 -0400 v1_034
+================================
+
+  commit a78a428330116aba16f036d79027caf48253abfe
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Sat Apr 3 17:46:46 2010 -0400
+  
+    Bump PTL revision for release.
+
+  commit 3a6186de3d67af29e93cd056623ddffc5c420dd7
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Tue Mar 23 17:27:32 2010 -0400
+  
+    Replace z_rt53302_fh_watchers.pm with z_rt53302_fh_watchers_slow.pm.
+    The non-slow one was broken since its client shuts down without
+    waiting for the server's response.
+
+  commit 92d65ba3aaf115c2dd81a6d791c3ccdf9e58b703
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Mon Mar 22 06:00:17 2010 -0400
+  
+    Support legal =for and =begin POD syntax for skip_tests(), in
+    addition to the previous =for/=cut syntax that caused skip_tests() to
+    appear in everyone's perldoc. Document the change. Deprecate the bad
+    syntax, which won't be a terrible burden since everyone probably
+    wanted to migrate away from it anyway.
+
+  commit 08fd7496ca7ba050e33e3065933dc817e0aeecaa
+  Author: Larwan Berke <larwan@0ne.us>
+  Date:   Mon Mar 22 02:54:39 2010 -0400
+  
+    Add optional one-line =for poe_tests syntax to hide it from POD
+    formatters.
+
+    Add example from POE::Loop::Glib that uses the new syntax.
+
+  commit 519ec6ce48f79858dcf452a5adf7c897607eae55
+  Author: Larwan Berke <larwan@0ne.us>
+  Date:   Thu Mar 11 06:57:11 2010 -0500
+  
+    Added the 00_info test for better debugging
+
+  commit 3db1f83683c67febfbf1facfce206c37ccd6abb0
+  Author: Larwan Berke <larwan@0ne.us>
+  Date:   Thu Mar 11 05:28:23 2010 -0500
+  
+    Add new tcp connection test for RT#53302
+
+  commit 0c25a94ffb9ba6124ab7caadcac842521a5292b9
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Wed Mar 10 19:14:25 2010 -0500
+  
+    Update the skip_tests() examples, and explain what's going on in
+    each.
+
+  commit 27999d54d5fae8f8a5b81dcea5aedc9fd1ec3a2e
+  Author: Larwan Berke <larwan@0ne.us>
+  Date:   Tue Mar 9 07:59:40 2010 -0500
+  
+    Fix the followtail test to use File::Temp, thanks to
+    http://cpantesters.org/cpan/report/6877011 and others like it
+
+  commit 60c161f63702d6bfd2897d91782f846b6d3558a5
+  Author: Larwan Berke <larwan@0ne.us>
+  Date:   Tue Mar 9 07:20:16 2010 -0500
+  
+    After a lot of hacking/digging Cygwin with a TERM=dumb does not work
+    with POE::Wheel::ReadLine. This fix skips the test, and makes
+    Wheel::ReadLine die if it detects this situation. Added some docs for
+    our Cygwin users :) 
+
+================================
+2010-02-15 06:27:00 -0500 v1_033
+================================
+
+  commit 6aa742d27db974ecdfa6ab37c0165310086d69da
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Mon Feb 15 06:27:00 2010 -0500
+  
+    Bump for yet another release.
+
+  commit 4571e4cdc2994f530af94dbc1d8c0fec3ad9ace9
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Mon Feb 15 01:05:37 2010 -0500
+  
+    Make Bazerka's regression test a little more forgiving about elapsed
+    run time.
+
+  commit 25e1ccdb98488337cfbc3935a92c3e87ad3ce081
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Sun Feb 14 23:55:56 2010 -0500
+  
+    Skip pty tests if IO::Pty isn't available. Also some style fixes.
+
+  commit 7f5aa1fe737f53ca38d51018b8a7abdd06f256b8
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Sun Feb 14 23:55:18 2010 -0500
+  
+    Make the test a little more forgiving for slower systems, such as
+    virtualized Windows systems and other forms of emulation. 
+
+================================
+2010-02-14 02:44:47 -0500 v1_032
+================================
+
+  commit c9ff00832cec870f535364530a3f586cf0bcdfa7
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Sun Feb 14 02:44:47 2010 -0500
+  
+    Add a test case from rt.cpan.org #54319. Verify Po::Wh::FollowTail
+    actually tails files. Thanks to Bazerka on irc.perl.org for
+    submitting the basis of this test case.
+
+  commit c4bcf0cc36b1f2a9707a10ce33c881e27f12e163
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Sat Jan 2 02:57:35 2010 -0500
+  
+    Try to resolve some CPAN indexer issues.
+
+    Eliminate a $VERSION string being used to test a version (not define
+    one). Eliminate a package statement used to define a constant (not a
+    class). Change a test package name to avoid indexer conflict with
+    another distribution. 
+
+==============
+End of Excerpt
+==============
