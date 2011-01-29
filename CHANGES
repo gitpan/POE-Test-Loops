@@ -2,6 +2,18 @@
 9999-99-99 99:99:99 +0000 HEAD
 ==============================
 
+  commit 4966c1668ab76534b9d36f95b55ff2f0358765d8
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Fri Jan 28 21:33:59 2011 -0500
+  
+    Bump version.
+
+  commit 739fb21e62d92722230a5e12ba6cb4f2991ec4f1
+  Author: Apocalypse <perl@0ne.us>
+  Date:   Fri Jan 28 12:46:19 2011 -0700
+  
+    fix non-numeric comparison when using dev release
+
   commit 2ce59f530a40c4ba112119031ade310554d32e9c
   Author: Rocco Caputo <rcaputo@cpan.org>
   Date:   Thu Jan 27 20:27:48 2011 -0500
