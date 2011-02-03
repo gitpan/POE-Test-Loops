@@ -1,6 +1,12 @@
-==============================
-9999-99-99 99:99:99 +0000 HEAD
-==============================
+================================
+2011-02-02 20:11:23 -0500 v1_040
+================================
+
+  commit 1092e7311156f0ef2941c4d841f7c09989cd03c3
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Wed Feb 2 20:11:23 2011 -0500
+  
+    Bump for release.
 
   commit 4966c1668ab76534b9d36f95b55ff2f0358765d8
   Author: Rocco Caputo <rcaputo@cpan.org>
