@@ -6,7 +6,25 @@
 
 use strict;
 use lib qw(./mylib ../mylib);
-use Socket qw(AF_INET6);
+
+BEGIN {
+  # under perl-5.6.2 the warning "leaks" from the eval, while newer versions don't...
+  # it's due to Exporter.pm behaving differently, so we have to shut it up
+  no warnings 'redefine';
+  require Carp;
+  local *Carp::carp = sub { die @_ };
+  eval { require Socket; Socket->import('AF_INET6') };
+  if ($@) {
+    eval { require Socket6; Socket6->import('AF_INET6') };
+    if ($@) {
+      print "1..0 # Skip Cannot find AF_INET6 support in Socket or Socket6.\n";
+      CORE::exit();
+    }
+  }
+}
+
+# Second BEGIN block so that AF_INET6 is defined before this code is
+# compiled.
 
 BEGIN {
   my $error;
