@@ -1,25 +1,19 @@
---- #YAML:1.0
-name:               POE-Test-Loops
-version:            1.050
-abstract:           POE::Loop test suite
+---
+abstract: 'Reusable tests for POE::Loop authors'
 author:
-    - Rocco Caputo <rcaputo@cpan.org>
-license:            perl
-distribution_type:  module
+  - 'Rocco Caputo <rcaputo@cpan.org>'
+build_requires: {}
 configure_requires:
-    ExtUtils::MakeMaker:  0
-build_requires:
-    ExtUtils::MakeMaker:  0
-requires:
-    Test::More:  0
-resources:
-    license:     http://dev.perl.org/licenses/
-    repository:  https://github.com/rcaputo/poe-test-loops
-no_index:
-    directory:
-        - t
-        - inc
-generated_by:       ExtUtils::MakeMaker version 6.56
+  ExtUtils::MakeMaker: 6.31
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.102400'
+license: perl
 meta-spec:
-    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
-    version:  1.4
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: POE-Test-Loops
+requires:
+  Test::More: 0
+resources:
+  repository: git://github.com/rcaputo/poe-test-loops.git
+version: 1.311

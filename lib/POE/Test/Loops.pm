@@ -1,12 +1,12 @@
 # vim: ts=2 sw=2 expandtab
 
 package POE::Test::Loops;
+BEGIN {
+  $POE::Test::Loops::VERSION = '1.311';
+}
 
+use warnings;
 use strict;
-use vars qw($VERSION);
-
-use vars qw($VERSION);
-$VERSION = '1.050'; # NOTE - Should be #.### (three decimal places)
 
 use File::Spec;
 use File::Path;

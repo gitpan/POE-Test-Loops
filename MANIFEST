@@ -1,8 +1,13 @@
 CHANGES
+LICENSE
 MANIFEST
+MANIFEST.SKIP
+META.yml
 Makefile.PL
 README
+README.mkdn
 bin/poe-gen-tests
+dist.ini
 lib/POE/Test/DondeEstan.pm
 lib/POE/Test/Loops.pm
 lib/POE/Test/Loops/00_info.pm
@@ -37,8 +42,10 @@ lib/POE/Test/Loops/z_leolo_wheel_run.pm
 lib/POE/Test/Loops/z_merijn_sigchld_system.pm
 lib/POE/Test/Loops/z_rt39872_sigchld.pm
 lib/POE/Test/Loops/z_rt39872_sigchld_stop.pm
+lib/POE/Test/Loops/z_rt53302_fh_watchers.pm
 lib/POE/Test/Loops/z_rt54319_bazerka_followtail.pm
 lib/POE/Test/Loops/z_steinert_signal_integrity.pm
-lib/POE/Test/Loops/z_rt53302_fh_watchers.pm
+t/000-report-versions.t
 t/01_no_tests.t
-META.yml                                 Module meta-data (added by MakeMaker)
+xt/release/pod-coverage.t
+xt/release/pod-syntax.t

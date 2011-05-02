@@ -13,6 +13,9 @@ sub POE::Kernel::CATCH_EXCEPTIONS () { 0 }
 
 BEGIN {
   package POE::Kernel;
+BEGIN {
+  $POE::Kernel::VERSION = '1.311';
+}
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
 

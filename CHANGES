@@ -1,4 +1,26 @@
 ================================
+2011-05-02 19:11:06 -0400 v1_311
+================================
+
+  commit 10d55176d9883ff2c7972b3fbcf1de929a68df41
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Mon May 2 19:11:06 2011 -0400
+  
+    Version bump for release.
+
+  commit da1925f5be36421f8ca970172d12adab304eba20
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Wed Apr 20 00:07:39 2011 -0400
+  
+    Switch to Dist::Zilla.
+
+  commit e72a8b9ca9db88d46cc53dee27bfaa2423d4d3e9
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Tue Apr 19 13:10:51 2011 -0400
+  
+    Bump for release. 
+
+================================
 2011-04-18 10:18:55 -0700 v1_050
 ================================
 
@@ -144,6 +166,6 @@
   
     Promote poe-test-loops contents to the top level. 
 
-==============
-End of Excerpt
-==============
+===================================
+End of changes in the last 365 days
+===================================
