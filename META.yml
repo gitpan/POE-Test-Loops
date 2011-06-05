@@ -4,16 +4,16 @@ author:
   - 'Rocco Caputo <rcaputo@cpan.org>'
 build_requires: {}
 configure_requires:
-  ExtUtils::MakeMaker: 6.31
+  ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.102400'
+generated_by: 'Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.102400'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: POE-Test-Loops
 requires:
-  Test::More: 0
+  Test::More: 0.94
 resources:
   repository: git://github.com/rcaputo/poe-test-loops.git
-version: 1.311
+version: 1.312

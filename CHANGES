@@ -1,4 +1,15 @@
 ================================
+2011-06-05 18:06:45 -0400 v1_312
+================================
+
+  commit 575e9ef0d508d5ac306fa3bd3525a5feefe6e1da
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Sun Jun 5 18:06:45 2011 -0400
+  
+    Require Test::More 0.94. Dist::Zilla's ReportVersinos plugin wants
+    it. 
+
+================================
 2011-05-02 19:11:06 -0400 v1_311
 ================================
 

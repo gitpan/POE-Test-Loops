@@ -11,7 +11,7 @@ sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 BEGIN {
   package POE::Kernel;
 BEGIN {
-  $POE::Kernel::VERSION = '1.311';
+  $POE::Kernel::VERSION = '1.312';
 }
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
@@ -40,7 +40,7 @@ BEGIN {
 
 package Switch;
 BEGIN {
-  $Switch::VERSION = '1.311';
+  $Switch::VERSION = '1.312';
 }
 use POE::NFA;
 
@@ -145,7 +145,7 @@ POE::NFA->spawn(
 
 package Operator;
 BEGIN {
-  $Operator::VERSION = '1.311';
+  $Operator::VERSION = '1.312';
 }
 use POE::Session;
 
@@ -184,7 +184,7 @@ POE::Session->create(
 
 package FibServer;
 BEGIN {
-  $FibServer::VERSION = '1.311';
+  $FibServer::VERSION = '1.312';
 }
 use POE::NFA;
 
@@ -244,7 +244,7 @@ POE::NFA->spawn(
 
 package FibClient;
 BEGIN {
-  $FibClient::VERSION = '1.311';
+  $FibClient::VERSION = '1.312';
 }
 use POE::Session;
 
@@ -293,7 +293,7 @@ POE::Session->create(
 
 package DynamicStates;
 BEGIN {
-  $DynamicStates::VERSION = '1.311';
+  $DynamicStates::VERSION = '1.312';
 }
 use POE::NFA;
 
@@ -354,7 +354,7 @@ POE::NFA->spawn(
 
 package main;
 BEGIN {
-  $main::VERSION = '1.311';
+  $main::VERSION = '1.312';
 }
 
 POE::Kernel->run();
