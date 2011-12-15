@@ -4,7 +4,6 @@
 use strict;
 use warnings;
 
-sub DEBUG () { 0 }
 my $REFCNT;
 
 sub POE::Kernel::USE_SIGCHLD () { 1 }
@@ -12,8 +11,8 @@ sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 
 BEGIN {
   package POE::Kernel;
-BEGIN {
-  $POE::Kernel::VERSION = '1.312';
+{
+  $POE::Kernel::VERSION = '1.350';
 }
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
@@ -37,7 +36,7 @@ $SIG{__WARN__} = sub {
   print STDERR "$$: $_[0]";
 };
 
-plan tests => 3;
+plan tests => 4;
 
 our $PARENT = 1;
 
@@ -58,19 +57,17 @@ POE::Session->create(
   }
 );
 
-DEBUG and warn "Parent";
+note "Parent";
 $poe_kernel->run;
 pass( "Sane exit" ) if $PARENT;
-DEBUG and warn "Exit";
+note "Exit";
 
 ### End of main code.  Beginning of subroutines.
 
 sub _start {
   my( $kernel, $heap ) = @_[KERNEL, HEAP];
 
-  DEBUG and warn "_start";
-  $kernel->alias_set( 'worker' );
-  $kernel->sig( CHLD => 'sig_CHLD' );
+  note "_start";
 
   $kernel->yield( 'work' );
 }
@@ -84,7 +81,8 @@ sub work {
 
     if( $pid ) {        # parent
       $heap->{$name}{PID} = $pid;
-      $heap->{pid2N}{ $pid } = $name;
+      $heap->{pid_to_name}{ $pid } = $name;
+      $kernel->sig_child($pid, 'sig_CHLD');
     }
     else {
       $kernel->can('has_forked') and $kernel->has_forked();
@@ -98,7 +96,7 @@ sub work {
   }
 
   $kernel->delay_add( 'parent', 3 );
-  diag( "Wait 3" );
+  diag( "Parent $$ waiting 3sec for slow systems to settle." );
 
   return;
 }
@@ -106,7 +104,7 @@ sub work {
 sub parent
 {
   my( $kernel, $heap, $session ) = @_[KERNEL, HEAP, SESSION];
-  DEBUG and warn "parent";
+  note "parent";
   diag( "sending sigusr1" );
   kill SIGUSR1, $heap->{T1}{PID};
   diag( "sent sigusr1" );
@@ -118,7 +116,7 @@ sub child
 {
   my( $kernel, $heap, $session ) = @_[KERNEL, HEAP, SESSION];
   $PARENT = 0;
-  DEBUG and warn "child";
+  note "child";
   $kernel->sig( 'CHLD' );
   $kernel->sig( USR1 => 'sig_USR1' );
   $kernel->refcount_increment( $session->ID, 'USR1' );
@@ -127,27 +125,23 @@ sub child
 sub sig_USR1
 {
   my( $kernel, $heap, $session ) = @_[KERNEL, HEAP, SESSION];
-  DEBUG and warn "USR1";
+  note "USR1";
   $REFCNT = 1;
   $kernel->sig( 'USR1' );
   $kernel->refcount_decrement( $session->ID, 'USR1' );
-  $kernel->alias_remove( 'worker' );
 }
 
 
 sub _stop {
   my( $kernel, $heap ) = @_[KERNEL, HEAP];
-  DEBUG and warn "_stop";
+  note "_stop";
 }
 
 sub done {
   my( $kernel, $heap, $session ) = @_[KERNEL, HEAP, SESSION];
-  DEBUG and warn "done";
+  note "done";
 
-  $kernel->alias_remove( 'worker' );
-  $kernel->sig( 'CHLD' );
-
-  my @list = keys %{ $heap->{pid2N} };
+  my @list = keys %{ $heap->{pid_to_name} };
   is( 0+@list, 1, "One child left ($list[0])" );
   kill SIGUSR1, @list;
 
@@ -161,17 +155,22 @@ sub sig_CHLD {
     KERNEL, HEAP, ARG0..$#_
   ];
 
-  unless( $heap->{pid2N}{$pid} ) {
-      return;
+  unless( $heap->{pid_to_name}{$pid} ) {
+    return;
   }
 
-  my $name = $heap->{pid2N}{$pid};
-  my $D = $heap->{$name};
+  my $name = $heap->{pid_to_name}{$pid};
+  my $D = delete $heap->{$name};
+
+  if ($name ne 'T1') {
+    is( $D->{closing}, undef, "Expected child exited" );
+    return;
+  }
 
   is( $D->{closing}, 1, "Expected child exited" );
   $kernel->refcount_decrement( $_[SESSION]->ID, $name );
   delete $heap->{$name};
-  delete $heap->{pid2N}{$pid};
+  delete $heap->{pid_to_name}{$pid};
 
   $kernel->yield( 'done' );
 }

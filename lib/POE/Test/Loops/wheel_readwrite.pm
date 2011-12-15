@@ -11,8 +11,8 @@ sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 
 BEGIN {
   package POE::Kernel;
-BEGIN {
-  $POE::Kernel::VERSION = '1.312';
+{
+  $POE::Kernel::VERSION = '1.350';
 }
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
@@ -69,8 +69,8 @@ sub test_dispatcher {
 # Appendix 1 - Mock/Proxy Driver {{{
 {
   package MockDriver;
-BEGIN {
-  $MockDriver::VERSION = '1.312';
+{
+  $MockDriver::VERSION = '1.350';
 }
   # Those readers interested in good practice should see Test::MockObject
   use vars qw($AUTOLOAD);

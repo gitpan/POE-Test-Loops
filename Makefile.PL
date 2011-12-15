@@ -9,24 +9,24 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'Reusable tests for POE::Loop authors',
-  'AUTHOR' => 'Rocco Caputo <rcaputo@cpan.org>',
-  'BUILD_REQUIRES' => {},
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.30'
+  "ABSTRACT" => "Reusable tests for POE::Loop authors",
+  "AUTHOR" => "Rocco Caputo <rcaputo\@cpan.org>",
+  "BUILD_REQUIRES" => {},
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'POE-Test-Loops',
-  'EXE_FILES' => [
-    'bin/poe-gen-tests'
+  "DISTNAME" => "POE-Test-Loops",
+  "EXE_FILES" => [
+    "bin/poe-gen-tests"
   ],
-  'LICENSE' => 'perl',
-  'NAME' => 'POE::Test::Loops',
-  'PREREQ_PM' => {
-    'Test::More' => '0.94'
+  "LICENSE" => "perl",
+  "NAME" => "POE::Test::Loops",
+  "PREREQ_PM" => {
+    "Test::More" => "0.94"
   },
-  'VERSION' => '1.312',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "1.350",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 

@@ -19,8 +19,8 @@ sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 
 BEGIN {
   package POE::Kernel;
-BEGIN {
-  $POE::Kernel::VERSION = '1.312';
+{
+  $POE::Kernel::VERSION = '1.350';
 }
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }

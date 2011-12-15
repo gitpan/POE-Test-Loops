@@ -1,182 +1,193 @@
-================================
-2011-06-05 18:06:45 -0400 v1_312
-================================
+==================================================
+Changes from 2010-12-15 00:00:00 +0000 to present.
+==================================================
 
-  commit 575e9ef0d508d5ac306fa3bd3525a5feefe6e1da
+------------------------------------------
+version 1_350 at 2011-12-15 20:53:13 +0000
+------------------------------------------
+
+  Change: 392e713a33f57658bd31b4c47f3405890d733fbb
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Sun Jun 5 18:06:45 2011 -0400
-  
+  Date : 2011-12-15 15:53:13 +0000
+
+    Bump revision to 1.350. 
+
+  Change: db1f8f22e86f0ceb4b123d9e930e15e086e688a4
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2011-12-12 02:39:51 +0000
+
+    Fix a couple tests that were using sig(CHLD).
+
+    They were expecting POE::Resource::Sessions to reap children at exit
+    time, and that's had to change. 
+
+  Change: 677b12dc57dd417a2bc16f1359e43c796913dddb
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2011-12-09 11:43:57 +0000
+
+    Add process IDs to debugging messages for some forking tests. 
+
+  Change: 1f4ecc43fb48ae9b73c684589600f7d660e2d9f0
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2011-12-09 11:38:35 +0000
+
+    Disable an assertion that system() must return 0 during $SIG{CHLD}.
+
+    Perl has a known issue where system() can return -1 (failure) when a
+    $SIG{CHLD} handler is in effect, even if it succeeds. It's not POE's
+    it succeeds when a $SIG{CHLD} handler is in effect. It's not POE's
+    duty to work around the problem. Proper, reliable work-arounds would
+    incur global overhead. Use {local $SIG{CHLD}='DEFAULT'; system(...)}
+    as needed instead. And watch the skies for a Perl fix:
+    https://rt.perl.org/rt3/Ticket/Display.html?id=105700 
+
+------------------------------------------
+version 1_313 at 2011-06-05 22:06:45 +0000
+------------------------------------------
+
+  Change: 575e9ef0d508d5ac306fa3bd3525a5feefe6e1da
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2011-06-05 18:06:45 +0000
+
     Require Test::More 0.94. Dist::Zilla's ReportVersinos plugin wants
     it. 
 
-================================
-2011-05-02 19:11:06 -0400 v1_311
-================================
+------------------------------------------
+version 1_311 at 2011-05-02 23:11:06 +0000
+------------------------------------------
 
-  commit 10d55176d9883ff2c7972b3fbcf1de929a68df41
+  Change: 10d55176d9883ff2c7972b3fbcf1de929a68df41
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Mon May 2 19:11:06 2011 -0400
-  
-    Version bump for release.
+  Date : 2011-05-02 19:11:06 +0000
 
-  commit da1925f5be36421f8ca970172d12adab304eba20
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Wed Apr 20 00:07:39 2011 -0400
-  
-    Switch to Dist::Zilla.
+    Version bump for release. 
 
-  commit e72a8b9ca9db88d46cc53dee27bfaa2423d4d3e9
+  Change: da1925f5be36421f8ca970172d12adab304eba20
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Tue Apr 19 13:10:51 2011 -0400
-  
+  Date : 2011-04-20 00:41:56 +0000
+
+    Switch to Dist::Zilla. 
+
+  Change: e72a8b9ca9db88d46cc53dee27bfaa2423d4d3e9
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2011-04-19 13:10:51 +0000
+
     Bump for release. 
 
-================================
-2011-04-18 10:18:55 -0700 v1_050
-================================
+------------------------------------------
+version 1_050 at 2011-04-18 17:18:55 +0000
+------------------------------------------
 
-  commit 871d5bc8ab73ae3655b89a7fab214d3d165854d1
+  Change: 871d5bc8ab73ae3655b89a7fab214d3d165854d1
   Author: Hinrik Örn Sigurðsson <hinrik.sig@gmail.com>
-  Date:   Mon Apr 18 17:12:10 2011 +0000
-  
+  Date : 2011-04-18 10:18:55 +0000
+
     Test for transpose-chars at end of line
 
-    Signed-off-by: Apocalypse <perl@0ne.us>
+    Signed-off-by: Apocalypse <perl@0ne.us> 
 
-  commit d3e2add7cf71b76e57e2effd72e9336ced434cfc
+  Change: d3e2add7cf71b76e57e2effd72e9336ced434cfc
   Author: Apocalypse <perl@0ne.us>
-  Date:   Sun Apr 17 20:54:00 2011 -0700
-  
-    make wording more consistent in the skip message
+  Date : 2011-04-17 20:54:00 +0000
 
-  commit 2ae793e31d7c333084e235c6f53e93f3a4d8bca2
+    make wording more consistent in the skip message 
+
+  Change: 2ae793e31d7c333084e235c6f53e93f3a4d8bca2
   Author: Apocalypse <perl@0ne.us>
-  Date:   Sun Apr 17 20:43:55 2011 -0700
-  
-    add missing POE_DANTIC check
+  Date : 2011-04-17 20:43:55 +0000
 
-  commit f49de84cc0c0ded45e22b0e6f0cf7466b8585ffc
+    add missing POE_DANTIC check 
+
+  Change: f49de84cc0c0ded45e22b0e6f0cf7466b8585ffc
   Author: Apocalypse <perl@0ne.us>
-  Date:   Sat Apr 16 19:12:14 2011 -0700
-  
-    stylistic tweaks to the recent AF_INET6 patch
+  Date : 2011-04-16 19:12:14 +0000
 
-  commit 2378b9f1a53bddd3296827ede6a9975cf8b97170
+    stylistic tweaks to the recent AF_INET6 patch 
+
+  Change: 2378b9f1a53bddd3296827ede6a9975cf8b97170
   Author: Apocalypse <perl@0ne.us>
-  Date:   Sat Apr 16 18:52:05 2011 -0700
-  
-    finalize the AF_INET6 woes
+  Date : 2011-04-16 18:52:05 +0000
 
-  commit c47288b65b68b93bde97919260b5b7e8078bb53e
+    finalize the AF_INET6 woes 
+
+  Change: c47288b65b68b93bde97919260b5b7e8078bb53e
   Author: Apocalypse <perl@0ne.us>
-  Date:   Sat Apr 16 15:25:28 2011 -0700
-  
-    squash the AF_INET6 warning for good
+  Date : 2011-04-16 15:25:28 +0000
 
-  commit 8a492f335f8112d669380e5871f3ff6c0111b7c9
+    squash the AF_INET6 warning for good 
+
+  Change: 8a492f335f8112d669380e5871f3ff6c0111b7c9
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Sat Apr 16 17:18:43 2011 -0400
-  
-    Silence AF_INET6 warnings, per Apocalypse's research.
+  Date : 2011-04-16 17:18:43 +0000
 
-  commit d1d34942c4e022c0c4d8db6183d454ea18851901
+    Silence AF_INET6 warnings, per Apocalypse's research. 
+
+  Change: d1d34942c4e022c0c4d8db6183d454ea18851901
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Sat Apr 16 13:56:39 2011 -0400
-  
+  Date : 2011-04-16 13:56:39 +0000
+
     Add better support for those times when AF_INET6 can't be found.
-    Resolves an issue discovered by Apocalypse on Perl 5.6.2.
+    Resolves an issue discovered by Apocalypse on Perl 5.6.2. 
 
-  commit e232a2f071cecbdd553725d935a2f8726eb3c6c4
+  Change: e232a2f071cecbdd553725d935a2f8726eb3c6c4
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Wed Mar 9 12:34:50 2011 -0500
-  
-    Fix the way wheel_run_size.pm skips when Term::Size is absent.
+  Date : 2011-03-09 12:34:50 +0000
 
-  commit 541031bf0c34b09a2835e8fdf9468f4e264ad643
+    Fix the way wheel_run_size.pm skips when Term::Size is absent. 
+
+  Change: 541031bf0c34b09a2835e8fdf9468f4e264ad643
   Author: Tom Feist <shabble@metavore.org>
-  Date:   Sun Feb 20 13:34:08 2011 -0500
-  
+  Date : 2011-02-20 13:34:08 +0000
+
     Add a test for terminal size changes in Wheel::Run. 
 
-================================
-2011-02-02 20:11:23 -0500 v1_040
-================================
+------------------------------------------
+version 1_040 at 2011-02-03 01:11:23 +0000
+------------------------------------------
 
-  commit 1092e7311156f0ef2941c4d841f7c09989cd03c3
+  Change: 1092e7311156f0ef2941c4d841f7c09989cd03c3
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Wed Feb 2 20:11:23 2011 -0500
-  
-    Bump for release.
+  Date : 2011-02-02 20:11:23 +0000
 
-  commit 4966c1668ab76534b9d36f95b55ff2f0358765d8
+    Bump for release. 
+
+  Change: 4966c1668ab76534b9d36f95b55ff2f0358765d8
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Fri Jan 28 21:33:59 2011 -0500
-  
-    Bump version.
+  Date : 2011-01-28 21:34:54 +0000
 
-  commit 739fb21e62d92722230a5e12ba6cb4f2991ec4f1
+    Bump version. 
+
+  Change: 739fb21e62d92722230a5e12ba6cb4f2991ec4f1
   Author: Apocalypse <perl@0ne.us>
-  Date:   Fri Jan 28 12:46:19 2011 -0700
-  
-    fix non-numeric comparison when using dev release
+  Date : 2011-01-28 12:46:19 +0000
 
-  commit 2ce59f530a40c4ba112119031ade310554d32e9c
+    fix non-numeric comparison when using dev release 
+
+  Change: 2ce59f530a40c4ba112119031ade310554d32e9c
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Thu Jan 27 20:27:48 2011 -0500
-  
-    Eliminate Socket6 use from the tests.
+  Date : 2011-01-27 20:41:46 +0000
 
-  commit a5a3652cf445211a6b1e759fb5acebadeee3878e
+    Eliminate Socket6 use from the tests. 
+
+  Change: a5a3652cf445211a6b1e759fb5acebadeee3878e
   Author: Perl Whore <whoreperl@gmail.com>
-  Date:   Thu Jan 27 18:00:24 2011 -0500
-  
+  Date : 2011-01-27 18:02:10 +0000
+
     Resolve a test failure on CentOS, which appears to be a race
-    condition in the test itself. Resolves rt.cpan.org #61727.
+    condition in the test itself. Resolves rt.cpan.org #61727. 
 
-  commit 77f807dda02bfb6d21a15ca60d84c737a226a4d8
+  Change: 77f807dda02bfb6d21a15ca60d84c737a226a4d8
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Fri Dec 3 23:43:40 2010 -0500
-  
-    Fix alarms tests to match POE's documentation.
+  Date : 2010-12-03 23:43:40 +0000
 
-  commit f7e2481974b1ce1efcb62e7c0ad31bb69ec6fc1d
+    Fix alarms tests to match POE's documentation. 
+
+  Change: f7e2481974b1ce1efcb62e7c0ad31bb69ec6fc1d
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Fri Dec 3 23:43:28 2010 -0500
-  
+  Date : 2010-12-03 23:43:28 +0000
+
     Convert metadata and changelogs to Git workflow. 
 
-================================
-2010-11-18 22:37:59 -0500 v1_036
-================================
-
-  commit bc3f702241916c37f833d4bb6ff2a60b716fcb6b
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Thu Nov 18 22:37:59 2010 -0500
-  
-    New revision for a new release.
-
-  commit 881ccb7c4a73550db6a27de9e438237a25665ecb
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Thu Nov 18 08:53:16 2010 -0500
-  
-    Fix POE::Wheel::ReadLine test issues on solaris and DragonFly BSD.
-
-    Force a known good TERM environment variable on solaris, rather than
-    whatever one might be set. Catch the case where POE::Wheel::ReadLine
-    fails to instantiate, and skip all tests.
-
-  commit 44bfa444898de17eb955ac63d822493861b91b6e
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Tue Sep 7 22:14:56 2010 -0400
-  
-    Remove cvs/svn keywords.
-
-  commit 5e1e5c185f5790f58da34287c8f44880e31fce79
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Tue Sep 7 22:01:35 2010 -0400
-  
-    Promote poe-test-loops contents to the top level. 
-
-===================================
-End of changes in the last 365 days
-===================================
+=================================================
+Plus 19 releases after 2010-12-15 00:00:00 +0000.
+=================================================

@@ -1,6 +1,6 @@
 package POE::Test::DondeEstan;
-BEGIN {
-  $POE::Test::DondeEstan::VERSION = '1.312';
+{
+  $POE::Test::DondeEstan::VERSION = '1.350';
 }
 
 use warnings;

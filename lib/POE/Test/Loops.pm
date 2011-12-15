@@ -1,8 +1,8 @@
 # vim: ts=2 sw=2 expandtab
 
 package POE::Test::Loops;
-BEGIN {
-  $POE::Test::Loops::VERSION = '1.312';
+{
+  $POE::Test::Loops::VERSION = '1.350';
 }
 
 use warnings;

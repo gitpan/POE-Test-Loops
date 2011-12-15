@@ -10,8 +10,8 @@ sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 
 BEGIN {
   package POE::Kernel;
-BEGIN {
-  $POE::Kernel::VERSION = '1.312';
+{
+  $POE::Kernel::VERSION = '1.350';
 }
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
@@ -39,8 +39,8 @@ BEGIN {
 ### export conflicting constants.
 
 package Switch;
-BEGIN {
-  $Switch::VERSION = '1.312';
+{
+  $Switch::VERSION = '1.350';
 }
 use POE::NFA;
 
@@ -144,8 +144,8 @@ POE::NFA->spawn(
 ### as it goes on and off.
 
 package Operator;
-BEGIN {
-  $Operator::VERSION = '1.312';
+{
+  $Operator::VERSION = '1.350';
 }
 use POE::Session;
 
@@ -183,8 +183,8 @@ POE::Session->create(
 ### number you want, and it calculates and returns it.
 
 package FibServer;
-BEGIN {
-  $FibServer::VERSION = '1.312';
+{
+  $FibServer::VERSION = '1.350';
 }
 use POE::NFA;
 
@@ -243,8 +243,8 @@ POE::NFA->spawn(
 ### responses vs. expectations.
 
 package FibClient;
-BEGIN {
-  $FibClient::VERSION = '1.312';
+{
+  $FibClient::VERSION = '1.350';
 }
 use POE::Session;
 
@@ -292,8 +292,8 @@ POE::Session->create(
 ### Also tests options, and (call|post)backs
 
 package DynamicStates;
-BEGIN {
-  $DynamicStates::VERSION = '1.312';
+{
+  $DynamicStates::VERSION = '1.350';
 }
 use POE::NFA;
 
@@ -353,8 +353,8 @@ POE::NFA->spawn(
 ### Run everything until it's all done.
 
 package main;
-BEGIN {
-  $main::VERSION = '1.312';
+{
+  $main::VERSION = '1.350';
 }
 
 POE::Kernel->run();
