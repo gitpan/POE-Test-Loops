@@ -1,6 +1,37 @@
 ==================================================
-Changes from 2010-12-15 00:00:00 +0000 to present.
+Changes from 2011-03-12 00:00:00 +0000 to present.
 ==================================================
+
+------------------------------------------
+version 1.351 at 2012-03-11 18:41:20 +0000
+------------------------------------------
+
+  Change: 7b0edb05390869f971ef5a16ee3aaee60255f530
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2012-03-10 16:43:39 +0000
+
+    Make distribution self-tagging and version self-bumping. Thanks,
+    Dist::Zilla! 
+
+  Change: 37ea4d98d9529fd487a8c5e470c05c4bc37c34d2
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2012-03-10 16:33:47 +0000
+
+    Fix the tag identifying regexp in dist.ini. 
+
+  Change: 70d94e56f21b16fcd86c7f14bd4cd60f55ab44a6
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2012-03-10 13:24:43 +0000
+
+    Merge pull request #2 from mnunberg/master
+
+    Extended options for POE::Wheel::Run - tests patch 
+
+  Change: 6f8ac3a68370a7d71a553cafb94cf14a10f3a932
+  Author: Mark Nunberg <mnunberg@haskalah.org>
+  Date : 2011-12-19 00:12:07 +0000
+
+    Added ::Run redirection test 
 
 ------------------------------------------
 version 1_350 at 2011-12-15 20:53:13 +0000
@@ -141,53 +172,6 @@ version 1_050 at 2011-04-18 17:18:55 +0000
 
     Add a test for terminal size changes in Wheel::Run. 
 
-------------------------------------------
-version 1_040 at 2011-02-03 01:11:23 +0000
-------------------------------------------
-
-  Change: 1092e7311156f0ef2941c4d841f7c09989cd03c3
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-02-02 20:11:23 +0000
-
-    Bump for release. 
-
-  Change: 4966c1668ab76534b9d36f95b55ff2f0358765d8
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-01-28 21:34:54 +0000
-
-    Bump version. 
-
-  Change: 739fb21e62d92722230a5e12ba6cb4f2991ec4f1
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-01-28 12:46:19 +0000
-
-    fix non-numeric comparison when using dev release 
-
-  Change: 2ce59f530a40c4ba112119031ade310554d32e9c
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-01-27 20:41:46 +0000
-
-    Eliminate Socket6 use from the tests. 
-
-  Change: a5a3652cf445211a6b1e759fb5acebadeee3878e
-  Author: Perl Whore <whoreperl@gmail.com>
-  Date : 2011-01-27 18:02:10 +0000
-
-    Resolve a test failure on CentOS, which appears to be a race
-    condition in the test itself. Resolves rt.cpan.org #61727. 
-
-  Change: 77f807dda02bfb6d21a15ca60d84c737a226a4d8
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2010-12-03 23:43:40 +0000
-
-    Fix alarms tests to match POE's documentation. 
-
-  Change: f7e2481974b1ce1efcb62e7c0ad31bb69ec6fc1d
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2010-12-03 23:43:28 +0000
-
-    Convert metadata and changelogs to Git workflow. 
-
 =================================================
-Plus 19 releases after 2010-12-15 00:00:00 +0000.
+Plus 20 releases after 2011-03-12 00:00:00 +0000.
 =================================================
