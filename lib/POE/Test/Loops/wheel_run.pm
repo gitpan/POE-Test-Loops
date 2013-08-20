@@ -52,15 +52,12 @@ BEGIN {
     8 * STD_TEST_COUNT;
 }
 
-# Turn on extra debugging output within this test program.
-sub DEBUG () { 0 }
-
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 
 BEGIN {
   package POE::Kernel;
 {
-  $POE::Kernel::VERSION = '1.351';
+  $POE::Kernel::VERSION = '1.352';
 }
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
@@ -151,7 +148,7 @@ my $shutdown_program = sub {
         },
         check_timeout => sub {
           unless ($timeout_poked) {
-            warn "inactivity timeout reached!";
+            warn scalar(localtime), " - inactivity timeout reached!";
             CORE::exit 1;
           } else {
             $timeout_poked = 0;
@@ -190,7 +187,7 @@ my $shutdown_program = sub {
 { # {{{ a proxy around POE::Filter::Line that doesn't support get_one
   package My::LineFilter;
 {
-  $My::LineFilter::VERSION = '1.351';
+  $My::LineFilter::VERSION = '1.352';
 }
   sub new {
     my $class = shift;
@@ -203,12 +200,12 @@ my $shutdown_program = sub {
 # next follow some event handles that are used in constructing
 # each session in &create_test_session
 sub do_nonexistent {
-  warn "$_[STATE] called on session ".$_[SESSION]->ID." ($_[HEAP]->{label})";
+  warn scalar(localtime), " - $_[STATE] called on session ".$_[SESSION]->ID." ($_[HEAP]->{label})";
   CORE::exit 1;
 }
 
 sub do_error {
-  DEBUG and warn "$_[HEAP]->{label}: $_[ARG0] error $_[ARG1]: $_[ARG2]\n";
+  note(scalar(localtime) . " - $_[HEAP]->{label}: $_[ARG0] error $_[ARG1]: $_[ARG2]");
 }
 
 # {{{ definition of the main test session
@@ -222,20 +219,20 @@ sub main_perform_state {
   my $action = $heap->{expected}->[0][0];
 
   unless (ref $action) {
-    DEBUG and warn "$heap->{label}: performing put state: $action\n";
+    note(scalar(localtime) . " - $heap->{label}: performing put state: $action");
     eval { $heap->{wheel}->put( $action ) };
   } elsif ($action->[0] =~ m/^(?:pause|resume)_std(?:out|err)$/) {
     my $method = $action->[0];
-    DEBUG and warn "$heap->{label}: performing method state: $method\n";
+    note(scalar(localtime) . " - $heap->{label}: performing method state: $method");
     $heap->{wheel}->$method();
   } elsif ($action->[0] eq "kill") {
-    DEBUG and warn "$heap->{label}: performing kill\n";
+    note(scalar(localtime) . " - $heap->{label}: performing kill");
     $heap->{wheel}->kill();
   } elsif ($action->[0] eq "shutdown_stdin") {
-    DEBUG and warn "$heap->{label}: shutdown_stdin\n";
+    note(scalar(localtime) . " - $heap->{label}: shutdown_stdin");
     $heap->{wheel}->shutdown_stdin();
   } else {
-    warn "weird action @$action, this is a bug in the test script";
+    warn scalar(localtime), " - weird action @$action, this is a bug in the test script";
     CORE::exit 1;
   }
 
@@ -301,7 +298,7 @@ sub main_start {
   # timeout delay
   timeout_incref();
 
-  DEBUG and warn "$heap->{label}: _start\n";
+  note(scalar(localtime) . " - $heap->{label}: _start");
 }
 
 my $x__ = 0;
@@ -318,16 +315,16 @@ sub main_stop {
   );
 
   is( $heap->{flushes}, $heap->{flushes_expected},
-    "$heap->{label} flush count ($$)" )
+    scalar(localtime) . " - $heap->{label} flush count ($$)" )
     unless $heap->{ignore_flushes};
-  DEBUG and warn "$heap->{label}: _stop ($$)\n";
+  note(scalar(localtime) . " - $heap->{label}: _stop ($$)");
 }
 
 sub main_stdin {
   my $heap = $_[HEAP];
   $heap->{flushes}++;
   timeout_poke();
-  DEBUG and warn "$heap->{label}: stdin flush\n";
+  note(scalar(localtime) . " - $heap->{label}: stdin flush");
 }
 
 sub main_output {
@@ -340,11 +337,11 @@ sub main_output {
     unless defined $heap->{expected}->[0][1][1];
 
   is($state, $heap->{expected}->[0][1][0],
-    "$heap->{label} response type");
+    scalar(localtime) . " - $heap->{label} response type");
   is($input, "$prefix: ".$heap->{expected}->[0][1][1],
-    "$heap->{label} $state response");
+    scalar(localtime) . " - $heap->{label} $state response");
 
-  DEBUG and warn "$heap->{label}: $state $input\n";
+  note(scalar(localtime) . " - $heap->{label}: $state $input");
 
   timeout_poke();
 
@@ -355,17 +352,17 @@ sub main_output {
 sub main_close {
   my ($heap, $kernel) = @_[HEAP, KERNEL];
   is('close', $heap->{expected}->[0][1][0],
-    "$heap->{label} close");
+    scalar(localtime) . " - $heap->{label} close");
   is($_[HEAP]->{wheel}->get_driver_out_octets, 0,
-    "$heap->{label} driver_out_octets at close")
+    scalar(localtime) . " - $heap->{label} driver_out_octets at close")
     unless $heap->{ignore_flushes};
   is($_[HEAP]->{wheel}->get_driver_out_messages, 0,
-    "$heap->{label} driver_out_messages at close")
+    scalar(localtime) . " - $heap->{label} driver_out_messages at close")
     unless $heap->{ignore_flushes};
   delete $_[HEAP]->{wheel};
   timeout_decref();
   $kernel->sig("CHLD" => undef);
-  DEBUG and warn "$heap->{label}: close\n";
+  note(scalar(localtime) . " - $heap->{label}: close");
 }
 
 sub main_sigchld {
@@ -373,8 +370,8 @@ sub main_sigchld {
   my ($signame, $child_pid) = @_[ARG0, ARG1];
 
   my $our_child = $heap->{wheel} ? $heap->{wheel}->PID : -1;
-  DEBUG and warn(
-    "$heap->{label}: sigchld $signame for $child_pid ($our_child)\n"
+  note(
+    scalar(localtime) . " - $heap->{label}: sigchld $signame for $child_pid ($our_child)"
   );
 
   return unless $heap->{wheel} and $our_child == $child_pid;
@@ -423,7 +420,7 @@ sub create_constructor_session {
             ErrorEvent => 'error_event',
           );
         };
-        ok(!(!$@), "new: only valid conduits");
+        ok(!(!$@), scalar(localtime) . " - new: only valid conduits");
 
         eval {
           POE::Wheel::Run->new(
@@ -434,7 +431,7 @@ sub create_constructor_session {
             ErrorEvent => 'error_event',
           );
         };
-        ok(!(!$@), "new: cannot mix deprecated Filter with StdioFilter");
+        ok(!(!$@), scalar(localtime) . " - new: cannot mix deprecated Filter with StdioFilter");
 
         eval {
           POE::Wheel::Run->new(
@@ -449,8 +446,8 @@ sub create_constructor_session {
             CloseEvent   => 'close_nonexistent',
           );
         };
-        ok(!(!$@), "new: Program is needed");
-        
+        ok(!(!$@), scalar(localtime) . " - new: Program is needed");
+
         eval {
           POE::Wheel::Run->new(
             Program => sub { 0 },
@@ -458,8 +455,8 @@ sub create_constructor_session {
             RedirectStdout => "/non/existent"
           );
         };
-        ok(!(!$@), "new: *Event and Redirect* are mutually exclusive");
-        
+        ok(!(!$@), scalar(localtime) . " - new: *Event and Redirect* are mutually exclusive");
+
         timeout_poke();
       },
       _stop => sub { }, # Pacify assertions.
@@ -544,66 +541,79 @@ SKIP: {
 }
 
 sub silent_start {
-  
   pipe my ($stdout_read,$stdout_write);
   pipe my ($stdin_read, $stdin_write);
+
   my $wheel = POE::Wheel::Run->new(
     Program => sub {
+      select STDERR; $|=1;
+      select STDOUT; $|=1;
       eval "print STDOUT 'CHILD:'";
       eval 'my $input = <STDIN>; chomp($input); print STDERR $input;';
-      eval 'print STDERR "CHILD:";';
+      eval 'print STDERR "DONE:";';
+      close STDOUT;
+      close STDERR;
       exit(0);
     },
-    
+
     RedirectOutput => $stdout_write,
     RedirectStdin  => $stdin_read
-    
+
   );
-  
+
   select $stdin_write; $|=1;
-  
+
   $_[HEAP]->{silent_fdes} = [$stdout_read, $stdin_write];
   $_[HEAP]->{silent_wheel} = $wheel;
-  
+
   print $stdin_write "PARENT:\n";
   $poe_kernel->select_read($stdout_read, 'silent_got_stdout');
   $poe_kernel->sig_child($wheel->PID, 'silent_sigchld');
-    
+
   my $no_stdio = POE::Wheel::Run->new(
     Program => \&note
   );
   $poe_kernel->sig_child($no_stdio->PID, 'silent_sigchld');
-  
+
   ok(!($no_stdio->[ $no_stdio->HANDLE_STDOUT ] ||
          $no_stdio->[ $no_stdio->HANDLE_STDERR ]),
-         "stdio/standard output handles closed without events");
-  
+         scalar(localtime) . "stdio/standard output handles closed without events");
+
   ok($no_stdio->[ $no_stdio->HANDLE_STDIN ],
-     "stdio discard/STDIN still alive");
+     scalar(localtime) . "stdio discard/STDIN still alive");
 
   $no_stdio = POE::Wheel::Run->new(
     Program => \&note,
     NoStdin => 1
   );
-  
+
   $poe_kernel->sig_child($no_stdio->PID, 'silent_sigchld');
   ok(!($no_stdio->[ $no_stdio->HANDLE_STDIN ]),
-         "stdio/discarded STDIN with NoStdin");
+         scalar(localtime) . "stdio/discarded STDIN with NoStdin");
 }
 
 sub _silent_check_common {
-  my ($fh,$re,$desc) = @_;
+  my ($fh,$re,$desc,$a,$term) = @_;
   sysread($fh, my $buf = "", 8192);
+  if( $a ) {
+    $$a = '' unless defined $$a;
+    $$a .= $buf;
+    return unless $$a =~ $term;
+  }
+
   like($buf, $re, $desc);
   $poe_kernel->select_read($fh);
   close($fh);
 }
 
+my $ACCUME;
 sub silent_got_stdout {
   _silent_check_common(
     $_[ARG0],
-    qr/CHILD:PARENT:CHILD:/,
-    "stdio/redirection"
+    qr/CHILD:PARENT:DONE:/,
+    "stdio/redirection",
+    \$ACCUME,
+    qr/DONE/
   );
 }
 
@@ -626,7 +636,7 @@ sub silent_test {
     inline_states => {
       _start => \&silent_start,
       _stop => sub { },
-      #_stop => sub  { note "Stopped!" },
+      #_stop => sub  { note scalar(localtime) . " - Stopped!" },
       silent_got_stdout => \&silent_got_stdout,
       silent_fd_status  => \&silent_fd_status,
       silent_sigchld    => \&silent_sigchld

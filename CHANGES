@@ -1,177 +1,76 @@
 ==================================================
-Changes from 2011-03-12 00:00:00 +0000 to present.
+Changes from 2012-08-20 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 1.351 at 2012-03-11 18:41:20 +0000
+version 1.352 at 2013-08-20 17:18:39 +0000
 ------------------------------------------
 
-  Change: 7b0edb05390869f971ef5a16ee3aaee60255f530
+  Change: 71a0074a1c9e072f1eca21d160b1799620158b36
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2012-03-10 16:43:39 +0000
+  Date : 2013-08-19 18:42:04 +0000
 
-    Make distribution self-tagging and version self-bumping. Thanks,
-    Dist::Zilla! 
+    [rt.cpan.org 87931] Improve alarm test failure diagnostics. 
 
-  Change: 37ea4d98d9529fd487a8c5e470c05c4bc37c34d2
+  Change: cf4af38556bf32b9d5f4c05dc2b7474f8d7ac663
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2012-03-10 16:33:47 +0000
+  Date : 2013-08-18 21:39:37 +0000
 
-    Fix the tag identifying regexp in dist.ini. 
+    Modernize dist.ini somewhat. 
 
-  Change: 70d94e56f21b16fcd86c7f14bd4cd60f55ab44a6
+  Change: 84b5d2deb5ad7853ad1743126b29ef8b2f6edd2c
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2012-03-10 13:24:43 +0000
+  Date : 2013-08-18 03:49:17 +0000
 
-    Merge pull request #2 from mnunberg/master
+    Update copyright date. 
 
-    Extended options for POE::Wheel::Run - tests patch 
-
-  Change: 6f8ac3a68370a7d71a553cafb94cf14a10f3a932
-  Author: Mark Nunberg <mnunberg@haskalah.org>
-  Date : 2011-12-19 00:12:07 +0000
-
-    Added ::Run redirection test 
-
-------------------------------------------
-version 1_350 at 2011-12-15 20:53:13 +0000
-------------------------------------------
-
-  Change: 392e713a33f57658bd31b4c47f3405890d733fbb
+  Change: f5a5fdf804cd2d48e8dcf66decda365ad9197c0a
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-12-15 15:53:13 +0000
+  Date : 2013-07-13 03:56:17 +0000
 
-    Bump revision to 1.350. 
+    [rt.cpan.org 75299] Add timing info to the test output.
 
-  Change: db1f8f22e86f0ceb4b123d9e930e15e086e688a4
+    I haven't been able to reproduce the intermittent test timeout that
+    Todd Rinaldo reported on the RT ticket. To help unstall the ticket,
+    I've added timing information so cpantesters.org etc. might shed more
+    light on the issue. 
+
+  Change: 7bab034b67f39b4eaa3b97709b6609077bcf660c
+  Author: Philip Gwyn <gwyn@cpan.org>
+  Date : 2012-07-22 02:50:18 +0000
+
+    Buffer the stdout before checking it, and add a $term(inator)
+    parameter. 
+
+  Change: b129895e31b7e1c501f9f3f4b038a6a4fac8670c
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-12-12 02:39:51 +0000
+  Date : 2012-07-11 21:49:43 +0000
 
-    Fix a couple tests that were using sig(CHLD).
+    Recent wheel_run.t failures may be buffering-related.
 
-    They were expecting POE::Resource::Sessions to reap children at exit
-    time, and that's had to change. 
+    Philip Gwyn suggests it might be a buffering issue. Make sure the
+    child process' STDOUT and STDERR are unbuffered, and close them in a
+    consistent order. 
 
-  Change: 677b12dc57dd417a2bc16f1359e43c796913dddb
+  Change: b284e4e67a42afa80ac454c992a120d71ffce537
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-12-09 11:43:57 +0000
+  Date : 2012-07-10 09:56:31 +0000
 
-    Add process IDs to debugging messages for some forking tests. 
+    Convert DEBUG and warn() to Test::More::note().
 
-  Change: 1f4ecc43fb48ae9b73c684589600f7d660e2d9f0
+    This way I don't have to hinder calls for help by responding, "First,
+    edit the test and turn on the DEBUG flag." 
+
+  Change: 33e65fed1a0311f951e8592b70f81bbfc7826f82
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-12-09 11:38:35 +0000
+  Date : 2012-07-10 08:47:16 +0000
 
-    Disable an assertion that system() must return 0 during $SIG{CHLD}.
+    Account for: Failed test 'response time <=3 seconds (6)'
 
-    Perl has a known issue where system() can return -1 (failure) when a
-    $SIG{CHLD} handler is in effect, even if it succeeds. It's not POE's
-    it succeeds when a $SIG{CHLD} handler is in effect. It's not POE's
-    duty to work around the problem. Proper, reliable work-arounds would
-    incur global overhead. Use {local $SIG{CHLD}='DEFAULT'; system(...)}
-    as needed instead. And watch the skies for a Perl fix:
-    https://rt.perl.org/rt3/Ticket/Display.html?id=105700 
-
-------------------------------------------
-version 1_313 at 2011-06-05 22:06:45 +0000
-------------------------------------------
-
-  Change: 575e9ef0d508d5ac306fa3bd3525a5feefe6e1da
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-06-05 18:06:45 +0000
-
-    Require Test::More 0.94. Dist::Zilla's ReportVersinos plugin wants
-    it. 
-
-------------------------------------------
-version 1_311 at 2011-05-02 23:11:06 +0000
-------------------------------------------
-
-  Change: 10d55176d9883ff2c7972b3fbcf1de929a68df41
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-05-02 19:11:06 +0000
-
-    Version bump for release. 
-
-  Change: da1925f5be36421f8ca970172d12adab304eba20
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-04-20 00:41:56 +0000
-
-    Switch to Dist::Zilla. 
-
-  Change: e72a8b9ca9db88d46cc53dee27bfaa2423d4d3e9
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-04-19 13:10:51 +0000
-
-    Bump for release. 
-
-------------------------------------------
-version 1_050 at 2011-04-18 17:18:55 +0000
-------------------------------------------
-
-  Change: 871d5bc8ab73ae3655b89a7fab214d3d165854d1
-  Author: Hinrik Örn Sigurðsson <hinrik.sig@gmail.com>
-  Date : 2011-04-18 10:18:55 +0000
-
-    Test for transpose-chars at end of line
-
-    Signed-off-by: Apocalypse <perl@0ne.us> 
-
-  Change: d3e2add7cf71b76e57e2effd72e9336ced434cfc
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-04-17 20:54:00 +0000
-
-    make wording more consistent in the skip message 
-
-  Change: 2ae793e31d7c333084e235c6f53e93f3a4d8bca2
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-04-17 20:43:55 +0000
-
-    add missing POE_DANTIC check 
-
-  Change: f49de84cc0c0ded45e22b0e6f0cf7466b8585ffc
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-04-16 19:12:14 +0000
-
-    stylistic tweaks to the recent AF_INET6 patch 
-
-  Change: 2378b9f1a53bddd3296827ede6a9975cf8b97170
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-04-16 18:52:05 +0000
-
-    finalize the AF_INET6 woes 
-
-  Change: c47288b65b68b93bde97919260b5b7e8078bb53e
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-04-16 15:25:28 +0000
-
-    squash the AF_INET6 warning for good 
-
-  Change: 8a492f335f8112d669380e5871f3ff6c0111b7c9
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-04-16 17:18:43 +0000
-
-    Silence AF_INET6 warnings, per Apocalypse's research. 
-
-  Change: d1d34942c4e022c0c4d8db6183d454ea18851901
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-04-16 13:56:39 +0000
-
-    Add better support for those times when AF_INET6 can't be found.
-    Resolves an issue discovered by Apocalypse on Perl 5.6.2. 
-
-  Change: e232a2f071cecbdd553725d935a2f8726eb3c6c4
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2011-03-09 12:34:50 +0000
-
-    Fix the way wheel_run_size.pm skips when Term::Size is absent. 
-
-  Change: 541031bf0c34b09a2835e8fdf9468f4e264ad643
-  Author: Tom Feist <shabble@metavore.org>
-  Date : 2011-02-20 13:34:08 +0000
-
-    Add a test for terminal size changes in Wheel::Run. 
+    Expected to resolve:
+    http://cpantesters.org/cpan/report/830018ea-ae60-11e1-9066-3d54fb7543
+    f5 
 
 =================================================
-Plus 20 releases after 2011-03-12 00:00:00 +0000.
+Plus 26 releases after 2012-08-20 00:00:00 +0000.
 =================================================

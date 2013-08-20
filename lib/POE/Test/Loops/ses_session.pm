@@ -12,7 +12,7 @@ sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 BEGIN {
   package POE::Kernel;
 {
-  $POE::Kernel::VERSION = '1.351';
+  $POE::Kernel::VERSION = '1.352';
 }
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
@@ -231,7 +231,7 @@ POE::Session->create(
 
 package UnmappedPackage;
 {
-  $UnmappedPackage::VERSION = '1.351';
+  $UnmappedPackage::VERSION = '1.352';
 }
 use POE::Session; # for constants
 
@@ -255,7 +255,7 @@ sub _stop {
 
 package UnmappedObject;
 {
-  $UnmappedObject::VERSION = '1.351';
+  $UnmappedObject::VERSION = '1.352';
 }
 use POE::Session; # for constants
 
@@ -282,7 +282,7 @@ sub _stop {
 
 package MappedPackage;
 {
-  $MappedPackage::VERSION = '1.351';
+  $MappedPackage::VERSION = '1.352';
 }
 use POE::Session; # for constants
 
@@ -306,7 +306,7 @@ sub my_stop {
 
 package MappedObject;
 {
-  $MappedObject::VERSION = '1.351';
+  $MappedObject::VERSION = '1.352';
 }
 use POE::Session; # for constants
 
@@ -333,7 +333,7 @@ sub my_stop {
 
 package main;
 {
-  $main::VERSION = '1.351';
+  $main::VERSION = '1.352';
 }
 
 # New style (create) object session without event to method name map.
@@ -490,7 +490,7 @@ my $child_called = 0;
 
 package POE::MySession;
 {
-  $POE::MySession::VERSION = '1.351';
+  $POE::MySession::VERSION = '1.352';
 }
 
 use vars qw(@ISA);
@@ -505,7 +505,7 @@ sub DESTROY {
 
 package MyObject;
 {
-  $MyObject::VERSION = '1.351';
+  $MyObject::VERSION = '1.352';
 }
 
 sub new { bless {} }
