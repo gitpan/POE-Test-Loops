@@ -17,4 +17,4 @@ resources:
   homepage: http://search.cpan.org/dist/POE-Test-Loops/
   license: http://dev.perl.org/licenses/
   repository: git://github.com/rcaputo/poe-test-loops.git
-version: 1.352
+version: 1.353

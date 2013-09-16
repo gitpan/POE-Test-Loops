@@ -12,7 +12,7 @@ sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 BEGIN {
   package POE::Kernel;
 {
-  $POE::Kernel::VERSION = '1.352';
+  $POE::Kernel::VERSION = '1.353';
 }
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
@@ -231,7 +231,7 @@ POE::Session->create(
 
 package UnmappedPackage;
 {
-  $UnmappedPackage::VERSION = '1.352';
+  $UnmappedPackage::VERSION = '1.353';
 }
 use POE::Session; # for constants
 
@@ -255,7 +255,7 @@ sub _stop {
 
 package UnmappedObject;
 {
-  $UnmappedObject::VERSION = '1.352';
+  $UnmappedObject::VERSION = '1.353';
 }
 use POE::Session; # for constants
 
@@ -282,7 +282,7 @@ sub _stop {
 
 package MappedPackage;
 {
-  $MappedPackage::VERSION = '1.352';
+  $MappedPackage::VERSION = '1.353';
 }
 use POE::Session; # for constants
 
@@ -306,7 +306,7 @@ sub my_stop {
 
 package MappedObject;
 {
-  $MappedObject::VERSION = '1.352';
+  $MappedObject::VERSION = '1.353';
 }
 use POE::Session; # for constants
 
@@ -333,7 +333,7 @@ sub my_stop {
 
 package main;
 {
-  $main::VERSION = '1.352';
+  $main::VERSION = '1.353';
 }
 
 # New style (create) object session without event to method name map.
@@ -490,7 +490,7 @@ my $child_called = 0;
 
 package POE::MySession;
 {
-  $POE::MySession::VERSION = '1.352';
+  $POE::MySession::VERSION = '1.353';
 }
 
 use vars qw(@ISA);
@@ -505,7 +505,7 @@ sub DESTROY {
 
 package MyObject;
 {
-  $MyObject::VERSION = '1.352';
+  $MyObject::VERSION = '1.353';
 }
 
 sub new { bless {} }
@@ -603,7 +603,7 @@ POE::MySession->create(
 
       # 5.004 and 5.005 have some nasty gc issues. Near as I can tell,
       # data inside the heap is surviving the session DESTROY. This
-      # isnt possible in a sane and normal world. So if this is giving
+      # isn't possible in a sane and normal world. So if this is giving
       # you fits, consider it a sign that your "legacy perl" fetish is
       # bizarre and harmful.
       if ($] >= 5.006 or ($] >= 5.004 and $] < 5.00405)) {
@@ -656,7 +656,7 @@ is(
 
 # 5.004 and 5.005 have some nasty gc issues. Near as I can tell,
 # data inside the heap is surviving the session DESTROY. This
-# isnt possible in a sane and normal world.
+# isn't possible in a sane and normal world.
 if($] >= '5.006') {
   $expected = 4;
 }

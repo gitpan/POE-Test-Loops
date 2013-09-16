@@ -14,7 +14,7 @@ sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 BEGIN {
   package POE::Kernel;
 {
-  $POE::Kernel::VERSION = '1.352';
+  $POE::Kernel::VERSION = '1.353';
 }
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
@@ -51,7 +51,7 @@ BEGIN {
 
 BEGIN { use_ok("POE") }
 
-# Set up a second session that watches for child signals.  This is ot
+# Set up a second session that watches for child signals.  This is to
 # test whether a session with only sig_child() stays alive because of
 # the signals.
 

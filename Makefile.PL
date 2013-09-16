@@ -23,7 +23,7 @@ my %WriteMakefileArgs = (
   "NAME" => "POE::Test::Loops",
   "PREREQ_PM" => {},
   "TEST_REQUIRES" => {},
-  "VERSION" => "1.352",
+  "VERSION" => "1.353",
   "test" => {
     "TESTS" => "t/*.t"
   }

@@ -1,9 +1,67 @@
 ==================================================
-Changes from 2012-08-20 00:00:00 +0000 to present.
+Changes from 2012-09-15 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 1.352 at 2013-08-20 17:18:39 +0000
+version 1.353 at 2013-09-15 20:15:53 +0000
+------------------------------------------
+
+  Change: 8beabfebf53200a01b50a4d7d7f64ac4e429248e
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2013-09-15 16:06:22 +0000
+
+    Fix POE::Wheel::FollowTail test hang in wheel_tail.pm
+
+    Windows locks files and directories while they're open. It's not
+    possible to unlink() them in this state.
+
+    The file reset test tried to unlink() a test log to reset it. The
+    unlink() was silently failing, and the test program was waiting
+    indefinitely for the reset.
+
+    Added a SKIP section around those tests so they don't run on Windows.
+    Fixes welcome, because I'd really like Windows users to be able to
+    detect file resets.
+
+    Replaced the "skip_all" plan when networking isn't available with a
+    SKIP section around the network-based tests. Filesystem-based tests
+    will still run when networking isn't available... unless the tests
+    are running on Windows. 
+
+  Change: 8cf0e77fb43eb905ee5bb74642a16b734ffb32c0
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2013-08-25 11:04:10 +0000
+
+    Merge pull request #3 from dsteinbrunner/patch-1
+
+    Typo fixes. 
+
+  Change: ac0805fa60bb9ce492ecfb137f275e41167e5138
+  Author: David Steinbrunner <dsteinbrunner@pobox.com>
+  Date : 2013-08-25 06:50:25 +0000
+
+    typo fixes 
+
+  Change: b83faf96e31e29f5434bd1597152a219ecb35703
+  Author: David Steinbrunner <dsteinbrunner@pobox.com>
+  Date : 2013-08-25 06:48:32 +0000
+
+    typo fix 
+
+  Change: 3c4da097ed7c4b8b638d029a31636512d70231db
+  Author: David Steinbrunner <dsteinbrunner@pobox.com>
+  Date : 2013-08-25 06:47:31 +0000
+
+    typo fix 
+
+  Change: 6e2246a3ac7bba450eeee480dc1338aa68a4397c
+  Author: David Steinbrunner <dsteinbrunner@pobox.com>
+  Date : 2013-08-25 06:46:09 +0000
+
+    typo fix 
+
+------------------------------------------
+version 1.352 at 2013-08-19 22:42:04 +0000
 ------------------------------------------
 
   Change: 71a0074a1c9e072f1eca21d160b1799620158b36
@@ -72,5 +130,5 @@ version 1.352 at 2013-08-20 17:18:39 +0000
     f5 
 
 =================================================
-Plus 26 releases after 2012-08-20 00:00:00 +0000.
+Plus 26 releases after 2012-09-15 00:00:00 +0000.
 =================================================
