@@ -21,9 +21,11 @@ my %WriteMakefileArgs = (
   ],
   "LICENSE" => "perl",
   "NAME" => "POE::Test::Loops",
-  "PREREQ_PM" => {},
+  "PREREQ_PM" => {
+    "Test::More" => "0.98"
+  },
   "TEST_REQUIRES" => {},
-  "VERSION" => "1.353",
+  "VERSION" => "1.354",
   "test" => {
     "TESTS" => "t/*.t"
   }

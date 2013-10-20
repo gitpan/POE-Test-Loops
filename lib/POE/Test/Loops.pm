@@ -2,7 +2,7 @@
 
 package POE::Test::Loops;
 {
-  $POE::Test::Loops::VERSION = '1.353';
+  $POE::Test::Loops::VERSION = '1.354';
 }
 
 use warnings;

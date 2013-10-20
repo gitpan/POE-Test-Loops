@@ -12,9 +12,11 @@ meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: POE-Test-Loops
+requires:
+  Test::More: 0.98
 resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=POE-Test-Loops
   homepage: http://search.cpan.org/dist/POE-Test-Loops/
   license: http://dev.perl.org/licenses/
   repository: git://github.com/rcaputo/poe-test-loops.git
-version: 1.353
+version: 1.354
