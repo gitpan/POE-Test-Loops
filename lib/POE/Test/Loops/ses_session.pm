@@ -10,10 +10,8 @@ use lib qw(./mylib ../mylib);
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 
 BEGIN {
-  package POE::Kernel;
-{
-  $POE::Kernel::VERSION = '1.354';
-}
+  package
+  POE::Kernel;
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
 
@@ -229,10 +227,8 @@ POE::Session->create(
 #------------------------------------------------------------------------------
 # Unmapped package session.
 
-package UnmappedPackage;
-{
-  $UnmappedPackage::VERSION = '1.354';
-}
+package
+UnmappedPackage;
 use POE::Session; # for constants
 
 sub _start {
@@ -253,10 +249,8 @@ sub _stop {
 #------------------------------------------------------------------------------
 # Unmapped object session.
 
-package UnmappedObject;
-{
-  $UnmappedObject::VERSION = '1.354';
-}
+package
+UnmappedObject;
 use POE::Session; # for constants
 
 # Trivial constructor.
@@ -280,10 +274,8 @@ sub _stop {
 #------------------------------------------------------------------------------
 # Unmapped package session.
 
-package MappedPackage;
-{
-  $MappedPackage::VERSION = '1.354';
-}
+package
+MappedPackage;
 use POE::Session; # for constants
 
 sub my_start {
@@ -304,10 +296,8 @@ sub my_stop {
 #------------------------------------------------------------------------------
 # Unmapped object session.
 
-package MappedObject;
-{
-  $MappedObject::VERSION = '1.354';
-}
+package
+MappedObject;
 use POE::Session; # for constants
 
 # Trivial constructor.
@@ -331,10 +321,8 @@ sub my_stop {
 #------------------------------------------------------------------------------
 # Test the Package and Object sessions.
 
-package main;
-{
-  $main::VERSION = '1.354';
-}
+package
+main;
 
 # New style (create) object session without event to method name map.
 POE::Session->create(
@@ -488,10 +476,8 @@ my $stop_called = 0;
 my $parent_called = 0;
 my $child_called = 0;
 
-package POE::MySession;
-{
-  $POE::MySession::VERSION = '1.354';
-}
+package
+POE::MySession;
 
 use vars qw(@ISA);
 
@@ -503,15 +489,14 @@ sub DESTROY {
   $sessions_destroyed++;
 }
 
-package MyObject;
-{
-  $MyObject::VERSION = '1.354';
-}
+package
+MyObject;
 
 sub new { bless {} }
 sub DESTROY { $objects_destroyed++ }
 
-package main;
+package
+main;
 
 POE::MySession->create(
   inline_states => {

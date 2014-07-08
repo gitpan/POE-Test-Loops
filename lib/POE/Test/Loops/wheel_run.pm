@@ -55,10 +55,8 @@ BEGIN {
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 
 BEGIN {
-  package POE::Kernel;
-{
-  $POE::Kernel::VERSION = '1.354';
-}
+  package
+  POE::Kernel;
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
 
@@ -185,10 +183,8 @@ my $shutdown_program = sub {
 } # }}}
 
 { # {{{ a proxy around POE::Filter::Line that doesn't support get_one
-  package My::LineFilter;
-{
-  $My::LineFilter::VERSION = '1.354';
-}
+  package
+  My::LineFilter;
   sub new {
     my $class = shift;
     return bless [ POE::Filter::Line->new(@_) ], $class;

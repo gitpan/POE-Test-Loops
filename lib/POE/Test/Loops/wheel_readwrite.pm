@@ -10,10 +10,8 @@ use Test::More tests => 28;
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 
 BEGIN {
-  package POE::Kernel;
-{
-  $POE::Kernel::VERSION = '1.354';
-}
+  package
+  POE::Kernel;
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
 use POE qw(Filter::Map Driver::SysRW Pipe::TwoWay);
@@ -68,10 +66,8 @@ sub test_dispatcher {
 
 # Appendix 1 - Mock/Proxy Driver {{{
 {
-  package MockDriver;
-{
-  $MockDriver::VERSION = '1.354';
-}
+  package
+  MockDriver;
   # Those readers interested in good practice should see Test::MockObject
   use vars qw($AUTOLOAD);
   sub SELF_DRIVER () { 0 }

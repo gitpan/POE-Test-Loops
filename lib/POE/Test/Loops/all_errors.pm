@@ -10,10 +10,8 @@ use lib qw(./mylib ../mylib);
 sub POE::Kernel::ASSERT_DEFAULT () { 0 }
 
 BEGIN {
-  package POE::Kernel;
-{
-  $POE::Kernel::VERSION = '1.354';
-}
+  package
+  POE::Kernel;
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
 

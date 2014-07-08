@@ -4,7 +4,7 @@
       "Rocco Caputo <rcaputo@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.132140",
+   "generated_by" : "Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.141520",
    "license" : [
       "perl_5"
    ],
@@ -28,7 +28,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Test::More" : "0.98"
+            "Test::More" : "1.001002"
          }
       }
    },
@@ -39,15 +39,12 @@
          "web" : "https://rt.cpan.org/Public/Dist/Display.html?Name=POE-Test-Loops"
       },
       "homepage" : "http://search.cpan.org/dist/POE-Test-Loops/",
-      "license" : [
-         "http://dev.perl.org/licenses/"
-      ],
       "repository" : {
          "type" : "git",
          "url" : "git://github.com/rcaputo/poe-test-loops.git",
          "web" : "https://github.com/rcaputo/poe-test-loops"
       }
    },
-   "version" : "1.354"
+   "version" : "1.355"
 }
 

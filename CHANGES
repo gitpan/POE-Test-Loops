@@ -1,9 +1,25 @@
 ==================================================
-Changes from 2012-10-20 00:00:00 +0000 to present.
+Changes from 2013-07-08 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 1.354 at 2013-10-20 18:01:44 +0000
+version 1.355 at 2014-07-08 04:46:36 +0000
+------------------------------------------
+
+  Change: abba8d0ecf3f47a70c4fc52c94b6affdd1f701d8
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2014-07-08 00:36:33 +0000
+
+    Resolve some CPAN and Dist::Zilla package recognition issues. 
+
+  Change: c2dbf198a3bebd4885cacf6911454282d20222d0
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2014-04-08 00:10:24 +0000
+
+    Switch a test from ok() to is() for more fail-time information. 
+
+------------------------------------------
+version 1.354 at 2013-10-20 17:59:31 +0000
 ------------------------------------------
 
   Change: 8d9b7477dd1528890923237090cf673ae55426e2
@@ -142,5 +158,5 @@ version 1.352 at 2013-08-19 22:42:04 +0000
     f5 
 
 =================================================
-Plus 26 releases after 2012-10-20 00:00:00 +0000.
+Plus 26 releases after 2013-07-08 00:00:00 +0000.
 =================================================

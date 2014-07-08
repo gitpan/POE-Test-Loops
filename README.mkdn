@@ -38,8 +38,8 @@ POE::Test::Loops - Reusable tests for POE::Loop authors
 POE::Test::Loops contains one function, generate(), which will
 generate all the loop tests for one or more POE::Loop subclasses.
 
-The ["SYNOPSIS"](#SYNOPSIS) example is a version of [poe-gen-tests](http://search.cpan.org/perldoc?poe-gen-tests), which is a
-stand-alone utility to generate the actual tests.  [poe-gen-tests](http://search.cpan.org/perldoc?poe-gen-tests)
+The ["SYNOPSIS"](#synopsis) example is a version of [poe-gen-tests](https://metacpan.org/pod/poe-gen-tests), which is a
+stand-alone utility to generate the actual tests.  [poe-gen-tests](https://metacpan.org/pod/poe-gen-tests)
 also documents the POE::Test::Loops system in more detail.
 
 # FUNCTIONS
@@ -58,8 +58,8 @@ set to a TRUE value some progress reporting is printed.
 
 # SEE ALSO
 
-[POE::Loop](http://search.cpan.org/perldoc?POE::Loop) and [poe-gen-tests](http://search.cpan.org/perldoc?poe-gen-tests).
+[POE::Loop](https://metacpan.org/pod/POE::Loop) and [poe-gen-tests](https://metacpan.org/pod/poe-gen-tests).
 
 # AUTHOR & COPYRIGHT
 
-See [poe-gen-tests](http://search.cpan.org/perldoc?poe-gen-tests).
+See [poe-gen-tests](https://metacpan.org/pod/poe-gen-tests).

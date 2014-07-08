@@ -9,10 +9,8 @@ use lib qw(./mylib ../mylib);
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 
 BEGIN {
-  package POE::Kernel;
-{
-  $POE::Kernel::VERSION = '1.354';
-}
+  package
+  POE::Kernel;
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
 
@@ -38,10 +36,8 @@ BEGIN {
 ### This goes in its own package because POE::Session and POE::NFA
 ### export conflicting constants.
 
-package Switch;
-{
-  $Switch::VERSION = '1.354';
-}
+package
+Switch;
 use POE::NFA;
 
 sub new {
@@ -143,10 +139,8 @@ POE::NFA->spawn(
 ### observer who pushes the light's button over and over, watching it
 ### as it goes on and off.
 
-package Operator;
-{
-  $Operator::VERSION = '1.354';
-}
+package
+Operator;
 use POE::Session;
 
 POE::Session->create(
@@ -182,10 +176,8 @@ POE::Session->create(
 ### This is a Fibonacci number servlet.  Post it a request with the F
 ### number you want, and it calculates and returns it.
 
-package FibServer;
-{
-  $FibServer::VERSION = '1.354';
-}
+package
+FibServer;
 use POE::NFA;
 
 POE::NFA->spawn(
@@ -242,10 +234,8 @@ POE::NFA->spawn(
 ### This is a Fibonacci client.  It asks for F numbers and checks the
 ### responses vs. expectations.
 
-package FibClient;
-{
-  $FibClient::VERSION = '1.354';
-}
+package
+FibClient;
 use POE::Session;
 
 my $test_number = 11;
@@ -291,10 +281,8 @@ POE::Session->create(
 ### attaching a wheel to a session does
 ### Also tests options, and (call|post)backs
 
-package DynamicStates;
-{
-  $DynamicStates::VERSION = '1.354';
-}
+package
+DynamicStates;
 use POE::NFA;
 
 POE::NFA->spawn(
@@ -352,10 +340,8 @@ POE::NFA->spawn(
 
 ### Run everything until it's all done.
 
-package main;
-{
-  $main::VERSION = '1.354';
-}
+package
+main;
 
 POE::Kernel->run();
 

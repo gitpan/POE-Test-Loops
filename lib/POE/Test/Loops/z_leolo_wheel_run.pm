@@ -43,10 +43,8 @@ pass( "Done" );
 
 
 #############################################################################
-package PoeTestWorker;
-{
-  $PoeTestWorker::VERSION = '1.354';
-}
+package
+PoeTestWorker;
 
 use strict;
 use warnings;

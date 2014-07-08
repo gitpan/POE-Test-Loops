@@ -10,10 +10,8 @@ use Test::More tests => 20;
 sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 
 BEGIN {
-  package POE::Kernel;
-{
-  $POE::Kernel::VERSION = '1.354';
-}
+  package
+  POE::Kernel;
   use constant TRACE_DEFAULT => exists($INC{'Devel/Cover.pm'});
 }
 
@@ -97,8 +95,8 @@ sub machine_sig_zombie {
 
 sub machine_stop {
   my $heap = $_[HEAP];
-  ok($heap->{idle_count} == 1, "session received one SIGIDLE");
-  ok($heap->{zombie_count} == 1, "session received one SIGZOMBIE");
+  is($heap->{idle_count}, 1, "session received one SIGIDLE");
+  is($heap->{zombie_count}, 1, "session received one SIGZOMBIE");
 }
 
 # Spawn a state machine for testing.
