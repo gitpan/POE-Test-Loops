@@ -3,7 +3,29 @@ Changes from 2013-07-12 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 1.356 at 2014-07-12 03:15:32 +0000
+version 1.357 at 2014-07-12 06:41:17 +0000
+------------------------------------------
+
+  Change: b38be9a86069bdb41244d40198bd30fa94c9cda0
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2014-07-12 02:35:21 +0000
+
+    Take about 2sec off each POE::Wheel::Accept test that runs. 
+
+  Change: dc33d14687a3c44e118e4ea702700b54a5e085e5
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2014-07-12 02:26:30 +0000
+
+    Take about 3sec off the UDP SocketFactory test. 
+
+  Change: 63153832441b24466c948c375ac3d5f4f7d46eb5
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2014-07-12 00:58:37 +0000
+
+    Reduce the time to test basic timers. 
+
+------------------------------------------
+version 1.356 at 2014-07-12 02:41:59 +0000
 ------------------------------------------
 
   Change: a99ffee13fa9a7d149479f89b20855ec4f299e9d
