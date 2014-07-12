@@ -18,4 +18,4 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=POE-Test-Loops
   homepage: http://search.cpan.org/dist/POE-Test-Loops/
   repository: git://github.com/rcaputo/poe-test-loops.git
-version: '1.357'
+version: '1.358'

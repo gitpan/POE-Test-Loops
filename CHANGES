@@ -3,7 +3,42 @@ Changes from 2013-07-12 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 1.357 at 2014-07-12 06:41:17 +0000
+version 1.358 at 2014-07-12 22:24:02 +0000
+------------------------------------------
+
+  Change: 9bb32997c9b77e5c3ae33229f3e8b0aae3ad5263
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2014-07-12 18:14:15 +0000
+
+    Take 3.5sec off each wheel_tail.pm test run. 
+
+  Change: 50ce8766b931274fcc11ee8da6f1353418f9fb91
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2014-07-12 17:36:11 +0000
+
+    Take about 1.5 sec off z_steinert_signal_integrity.pm.
+
+    Most of these fixes are merely reducing timeouts once an expected
+    condition is met. The long wait-for-failure timeout isn't as
+    important once a test has passed, but turning off the timer entirely
+    isn't good either. There could be spurious events that we don't want,
+    and waiting a little extra time gives us some confidence they aren't
+    happening. 
+
+  Change: d7fa569f98714c2a7df7904c034988961fb569ba
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2014-07-12 17:28:57 +0000
+
+    Take about 2sec off each k_signals.pm test. 
+
+  Change: 28eb3a365918bf2d283450a2d9bcee7705740355
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2014-07-12 17:20:45 +0000
+
+    Take about 3sec off sig_child() tests. 
+
+------------------------------------------
+version 1.357 at 2014-07-12 06:35:21 +0000
 ------------------------------------------
 
   Change: b38be9a86069bdb41244d40198bd30fa94c9cda0
