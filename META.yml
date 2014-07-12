@@ -13,9 +13,9 @@ meta-spec:
   version: '1.4'
 name: POE-Test-Loops
 requires:
-  Test::More: '1.001002'
+  Test::More: '1.001003'
 resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=POE-Test-Loops
   homepage: http://search.cpan.org/dist/POE-Test-Loops/
   repository: git://github.com/rcaputo/poe-test-loops.git
-version: '1.355'
+version: '1.356'

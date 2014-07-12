@@ -22,9 +22,9 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "POE::Test::Loops",
   "PREREQ_PM" => {
-    "Test::More" => "1.001002"
+    "Test::More" => "1.001003"
   },
-  "VERSION" => "1.355",
+  "VERSION" => "1.356",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -32,7 +32,7 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "Test::More" => "1.001002"
+  "Test::More" => "1.001003"
 );
 
 
