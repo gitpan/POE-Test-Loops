@@ -24,7 +24,7 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Test::More" => "1.001003"
   },
-  "VERSION" => "1.358",
+  "VERSION" => "1.359",
   "test" => {
     "TESTS" => "t/*.t"
   }

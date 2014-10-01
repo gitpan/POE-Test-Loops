@@ -1,9 +1,30 @@
 ==================================================
-Changes from 2013-07-12 00:00:00 +0000 to present.
+Changes from 2013-10-01 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 1.358 at 2014-07-12 22:24:02 +0000
+version 1.359 at 2014-10-01 23:39:15 +0000
+------------------------------------------
+
+  Change: e9ea00e6e02120b66577e68f1a969cb550eaf3ed
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2014-07-27 03:07:53 +0000
+
+    Merge pull request #4 from Hugmeir/master
+
+    Don't assume that /tmp exists, use File::Temp instead 
+
+  Change: b96cbffbbf9e418014bb049449989ccc9a53f505
+  Author: Brian Fraser <fraserbn@gmail.com>
+  Date : 2014-07-27 03:35:16 +0000
+
+    Don't assume that /tmp exists, use File::Temp instead
+
+    Some unixy systems don't have /tmp (android, blackberry 10) which was
+    causing tests in POE to fail. 
+
+------------------------------------------
+version 1.358 at 2014-07-12 22:14:15 +0000
 ------------------------------------------
 
   Change: 9bb32997c9b77e5c3ae33229f3e8b0aae3ad5263
@@ -103,133 +124,6 @@ version 1.354 at 2013-10-20 17:59:31 +0000
 
     Resolves a bug reported by Doug Truesdell at John Deere. 
 
-------------------------------------------
-version 1.353 at 2013-09-15 20:06:22 +0000
-------------------------------------------
-
-  Change: 8beabfebf53200a01b50a4d7d7f64ac4e429248e
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2013-09-15 16:06:22 +0000
-
-    Fix POE::Wheel::FollowTail test hang in wheel_tail.pm
-
-    Windows locks files and directories while they're open. It's not
-    possible to unlink() them in this state.
-
-    The file reset test tried to unlink() a test log to reset it. The
-    unlink() was silently failing, and the test program was waiting
-    indefinitely for the reset.
-
-    Added a SKIP section around those tests so they don't run on Windows.
-    Fixes welcome, because I'd really like Windows users to be able to
-    detect file resets.
-
-    Replaced the "skip_all" plan when networking isn't available with a
-    SKIP section around the network-based tests. Filesystem-based tests
-    will still run when networking isn't available... unless the tests
-    are running on Windows. 
-
-  Change: 8cf0e77fb43eb905ee5bb74642a16b734ffb32c0
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2013-08-25 11:04:10 +0000
-
-    Merge pull request #3 from dsteinbrunner/patch-1
-
-    Typo fixes. 
-
-  Change: ac0805fa60bb9ce492ecfb137f275e41167e5138
-  Author: David Steinbrunner <dsteinbrunner@pobox.com>
-  Date : 2013-08-25 06:50:25 +0000
-
-    typo fixes 
-
-  Change: b83faf96e31e29f5434bd1597152a219ecb35703
-  Author: David Steinbrunner <dsteinbrunner@pobox.com>
-  Date : 2013-08-25 06:48:32 +0000
-
-    typo fix 
-
-  Change: 3c4da097ed7c4b8b638d029a31636512d70231db
-  Author: David Steinbrunner <dsteinbrunner@pobox.com>
-  Date : 2013-08-25 06:47:31 +0000
-
-    typo fix 
-
-  Change: 6e2246a3ac7bba450eeee480dc1338aa68a4397c
-  Author: David Steinbrunner <dsteinbrunner@pobox.com>
-  Date : 2013-08-25 06:46:09 +0000
-
-    typo fix 
-
-------------------------------------------
-version 1.352 at 2013-08-19 22:42:04 +0000
-------------------------------------------
-
-  Change: 71a0074a1c9e072f1eca21d160b1799620158b36
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2013-08-19 18:42:04 +0000
-
-    [rt.cpan.org 87931] Improve alarm test failure diagnostics. 
-
-  Change: cf4af38556bf32b9d5f4c05dc2b7474f8d7ac663
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2013-08-18 21:39:37 +0000
-
-    Modernize dist.ini somewhat. 
-
-  Change: 84b5d2deb5ad7853ad1743126b29ef8b2f6edd2c
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2013-08-18 03:49:17 +0000
-
-    Update copyright date. 
-
-  Change: f5a5fdf804cd2d48e8dcf66decda365ad9197c0a
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2013-07-13 03:56:17 +0000
-
-    [rt.cpan.org 75299] Add timing info to the test output.
-
-    I haven't been able to reproduce the intermittent test timeout that
-    Todd Rinaldo reported on the RT ticket. To help unstall the ticket,
-    I've added timing information so cpantesters.org etc. might shed more
-    light on the issue. 
-
-  Change: 7bab034b67f39b4eaa3b97709b6609077bcf660c
-  Author: Philip Gwyn <gwyn@cpan.org>
-  Date : 2012-07-22 02:50:18 +0000
-
-    Buffer the stdout before checking it, and add a $term(inator)
-    parameter. 
-
-  Change: b129895e31b7e1c501f9f3f4b038a6a4fac8670c
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2012-07-11 21:49:43 +0000
-
-    Recent wheel_run.t failures may be buffering-related.
-
-    Philip Gwyn suggests it might be a buffering issue. Make sure the
-    child process' STDOUT and STDERR are unbuffered, and close them in a
-    consistent order. 
-
-  Change: b284e4e67a42afa80ac454c992a120d71ffce537
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2012-07-10 09:56:31 +0000
-
-    Convert DEBUG and warn() to Test::More::note().
-
-    This way I don't have to hinder calls for help by responding, "First,
-    edit the test and turn on the DEBUG flag." 
-
-  Change: 33e65fed1a0311f951e8592b70f81bbfc7826f82
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2012-07-10 08:47:16 +0000
-
-    Account for: Failed test 'response time <=3 seconds (6)'
-
-    Expected to resolve:
-    http://cpantesters.org/cpan/report/830018ea-ae60-11e1-9066-3d54fb7543
-    f5 
-
 =================================================
-Plus 26 releases after 2013-07-12 00:00:00 +0000.
+Plus 28 releases after 2013-10-01 00:00:00 +0000.
 =================================================
