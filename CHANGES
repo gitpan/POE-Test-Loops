@@ -1,9 +1,25 @@
 ==================================================
-Changes from 2013-10-01 00:00:00 +0000 to present.
+Changes from 2013-11-03 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 1.359 at 2014-10-01 23:39:15 +0000
+version 1.360 at 2014-11-03 18:39:01 +0000
+------------------------------------------
+
+  Change: 321dbe7f3249bb5c82c83fbad8a9faf2b0319f22
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2014-11-03 11:51:29 +0000
+
+    Update dist.ini for relatively new plugi behaviors. 
+
+  Change: 88af7cb4cc1bd0cb92bcfd3d2e986264f2c040d7
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2014-10-30 12:38:45 +0000
+
+    Reflect a change in POE::Kernel->stop() behavior. 
+
+------------------------------------------
+version 1.359 at 2014-07-27 07:07:53 +0000
 ------------------------------------------
 
   Change: e9ea00e6e02120b66577e68f1a969cb550eaf3ed
@@ -112,18 +128,6 @@ version 1.355 at 2014-07-08 04:36:33 +0000
 
     Switch a test from ok() to is() for more fail-time information. 
 
-------------------------------------------
-version 1.354 at 2013-10-20 17:59:31 +0000
-------------------------------------------
-
-  Change: 8d9b7477dd1528890923237090cf673ae55426e2
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date : 2013-10-20 13:59:31 +0000
-
-    [rt.cpan.org 89568] Set Test::More prerequisite.
-
-    Resolves a bug reported by Doug Truesdell at John Deere. 
-
 =================================================
-Plus 28 releases after 2013-10-01 00:00:00 +0000.
+Plus 29 releases after 2013-11-03 00:00:00 +0000.
 =================================================

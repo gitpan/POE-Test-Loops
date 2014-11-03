@@ -4,7 +4,7 @@
       "Rocco Caputo <rcaputo@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.141520",
+   "generated_by" : "Dist::Zilla version 5.023, CPAN::Meta::Converter version 2.142690",
    "license" : [
       "perl_5"
    ],
@@ -16,7 +16,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.30"
+            "ExtUtils::MakeMaker" : "0"
          }
       },
       "develop" : {
@@ -28,7 +28,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Test::More" : "1.001003"
+            "Test::More" : "1.001002"
          }
       }
    },
@@ -45,6 +45,6 @@
          "web" : "https://github.com/rcaputo/poe-test-loops"
       }
    },
-   "version" : "1.359"
+   "version" : "1.360"
 }
 
